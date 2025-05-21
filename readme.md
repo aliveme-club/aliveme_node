@@ -147,7 +147,7 @@ npm install
 ```bash
 # 前端
 cd frontend
-cp .env.example .env # 填写LLM的API_KEY
+cp .env.example .env # 在.env填写LLM的API_KEY
 npm run dev
 
 # 后端
@@ -159,17 +159,12 @@ npm run dev
 
 为了使首页的AI活动推荐助手能够正常工作，您需要在前端项目的根目录下配置环境变量。这些变量用于连接到您选择的LLM（大语言模型）服务提供商的API。
 3.  **填写您的配置**: 
-    打开您的 `.env` 文件，并填入您的实际API基础URL、API密钥和希望使用的模型名称。例如：
+    打开 `.env` 文件，并填入您的实际API基础URL、API密钥和希望使用的模型名称。例如：
     ```env
     VITE_OPENAI_BASE_URL=https://api.deepseek.com
     VITE_OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     VITE_OPENAI_MODEL=deepseek-chat
     ```
-
-4.  **重要提示**: 
-    *   确保 `frontend/.env` 文件已添加到您的 `.gitignore` 文件中，以避免将敏感的API密钥提交到版本控制系统。
-    *   前端代码 (具体为 `frontend/src/components/home/HeroSection.vue`) 会自动加载 `frontend/.env` 文件中这些以 `VITE_` 开头的环境变量。
-    *   如果您更改了 `frontend/.env` 文件，您需要重新启动Vite开发服务器 (在 `frontend` 目录中运行 `npm run dev`) 以使更改生效。
 
 ## 开发规范
 1. 代码规范
