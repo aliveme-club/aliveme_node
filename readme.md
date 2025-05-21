@@ -158,13 +158,14 @@ npm run dev
 ## AI助手API配置 (环境变量)
 
 为了使首页的AI活动推荐助手能够正常工作，您需要在前端项目的根目录下配置环境变量。这些变量用于连接到您选择的LLM（大语言模型）服务提供商的API。
-3.  **填写您的配置**: 
-    打开 `.env` 文件，并填入您的实际API基础URL、API密钥和希望使用的模型名称。例如：
-    ```env
-    VITE_OPENAI_BASE_URL=https://api.deepseek.com
-    VITE_OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    VITE_OPENAI_MODEL=deepseek-chat
-    ```
+
+打开 `frontend/.env` 文件，并填入您的实际API基础URL、API密钥和希望使用的模型名称。例如：
+
+```env
+   VITE_OPENAI_BASE_URL=https://api.deepseek.com
+   VITE_OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+   VITE_OPENAI_MODEL=deepseek-chat
+```
 
 ## 开发规范
 1. 代码规范
