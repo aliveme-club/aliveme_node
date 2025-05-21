@@ -4,14 +4,14 @@
       <div class="flex flex-col md:flex-row items-center">
         <div class="md:w-1/2 mb-10 md:mb-0 fade-in hero-text-custom">
           <h1 class="text-4xl md:text-6xl font-bold mb-4">ALiveMe</h1>
-          <p class="text-xl md:text-2xl mb-6">爱自己、活出真我</p>
-          <p class="text-lg mb-8">融合 AI、心理学与游戏化的名片网社区工具，帮你提升自我认知与人际链接。</p>
+          <p class="text-xl md:text-2xl mb-6">{{ $t('components.home.HeroSection.title') }}</p>
+          <p class="text-lg mb-8">{{ $t('components.home.HeroSection.description') }}</p>
           <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 cta-buttons-custom">
-            <el-button type="primary" size="large" @click="scrollToAbout" class="btn-custom-primary">了解更多</el-button>
-            <router-link to="/oh-card">
-              <el-button type="success" size="large" class="btn-custom-oh-card">体验OH卡</el-button>
+            <el-button type="primary" size="large" @click="scrollToAbout" class="btn-custom-primary">{{ $t('components.home.HeroSection.actionButton') }}</el-button>
+            <router-link to="/ohCard">
+              <el-button type="success" size="large" class="btn-custom-oh-card">{{ $t('components.home.HeroSection.joinNow') }}</el-button>
             </router-link>
-            <el-button size="large" @click="scrollToContact" class="btn-custom-outline">加入我们</el-button>
+            <el-button size="large" @click="scrollToContact" class="btn-custom-outline">{{ $t('components.home.HeroSection.contact') }}</el-button>
           </div>
         </div>
         <div class="md:w-1/2 fade-in hero-image-custom" style="animation-delay: 0.3s">
@@ -24,9 +24,11 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import heroImageUrl from '@/assets/images/team/sunnyonthe38meeting.jpg';
 
 const router = useRouter();
+const { t } = useI18n();
 
 const scrollToAbout = () => {
   document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });

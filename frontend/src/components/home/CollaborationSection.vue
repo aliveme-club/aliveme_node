@@ -1,7 +1,7 @@
 <template>
   <section class="collaboration-section">
     <div class="container mx-auto px-4">
-      <h2 class="section-title text-3xl text-center centered mb-16">项目合作介绍</h2>
+      <h2 class="section-title text-3xl text-center centered mb-16">{{ $t('components.home.CollaborationSection.title') }}</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         <div v-for="(project, index) in collaborationProjects" :key="index"
              class="collaboration-card fade-in" 
@@ -9,9 +9,9 @@
           <div class="collaboration-icon">
             <el-icon :size="40"><component :is="project.icon" /></el-icon>
           </div>
-          <h3 class="text-xl font-bold mb-4">{{ project.title }}</h3>
-          <p class="mb-4">{{ project.subtitle }}</p>
-          <p>{{ project.description }}</p>
+          <h3 class="text-xl font-bold mb-4">{{ $t(`components.home.CollaborationSection.collaborationProjects[${index}].title`) }}</h3>
+          <p class="mb-4">{{ $t(`components.home.CollaborationSection.collaborationProjects[${index}].subtitle`) }}</p>
+          <p>{{ $t(`components.home.CollaborationSection.collaborationProjects[${index}].description`) }}</p>
         </div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -21,11 +21,11 @@
           <div class="collaboration-icon">
             <el-icon :size="40"><component :is="method.icon" /></el-icon>
           </div>
-          <h3 class="text-xl font-bold mb-4">{{ method.title }}</h3>
+          <h3 class="text-xl font-bold mb-4">{{ $t(`components.home.CollaborationSection.collaborationMethods[${index}].title`) }}</h3>
           <p class="mb-4" v-for="(item, itemIndex) in method.items" :key="itemIndex">
-            {{ item }}
+            {{ $t(`components.home.CollaborationSection.collaborationMethods[${index}].items[${itemIndex}]`) }}
           </p>
-          <el-button v-if="method.hasButton" type="warning" class="btn-yellow">联系我们合作</el-button>
+          <el-button v-if="method.hasButton" type="warning" class="btn-yellow">{{ $t('components.home.CollaborationSection.contactButton') }}</el-button>
         </div>
       </div>
     </div>
@@ -34,6 +34,9 @@
 
 <script setup>
 import { OfficeBuilding, Promotion, TakeawayBox, Calendar } from '@element-plus/icons-vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const collaborationProjects = [
   {

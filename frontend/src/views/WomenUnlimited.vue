@@ -6,8 +6,8 @@
 </template>
 
 <script setup>
-import WomenUnlimitedHeroSection from '@/components/women-unlimited/WomenUnlimitedHeroSection.vue';
-import WomenUnlimitedContentSection from '@/components/women-unlimited/WomenUnlimitedContentSection.vue';
+import WomenUnlimitedHeroSection from '@/components/womenUnlimited/WomenUnlimitedHeroSection.vue';
+import WomenUnlimitedContentSection from '@/components/womenUnlimited/WomenUnlimitedContentSection.vue';
 </script>
 
 <style scoped>

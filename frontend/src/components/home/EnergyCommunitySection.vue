@@ -1,7 +1,7 @@
 <template>
   <section class="energy-section">
     <div class="container mx-auto px-4">
-      <h2 class="section-title text-3xl text-center centered mb-16">三色能量社区</h2>
+      <h2 class="section-title text-3xl text-center centered mb-16">{{ $t('components.home.EnergyCommunitySection.title') }}</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div v-for="(energy, index) in energyTypes" :key="index"
              class="energy-card fade-in" 
@@ -10,9 +10,9 @@
           <div class="energy-icon">
             <el-icon :size="40"><component :is="energy.icon" /></el-icon>
           </div>
-          <h3 class="text-xl font-bold mb-4">{{ energy.title }}</h3>
-          <p class="mb-4">{{ energy.shortDesc }}</p>
-          <p>{{ energy.longDesc }}</p>
+          <h3 class="text-xl font-bold mb-4">{{ $t(`components.home.EnergyCommunitySection.energyTypes[${index}].title`) }}</h3>
+          <p class="mb-4">{{ $t(`components.home.EnergyCommunitySection.energyTypes[${index}].shortDesc`) }}</p>
+          <p>{{ $t(`components.home.EnergyCommunitySection.energyTypes[${index}].longDesc`) }}</p>
         </div>
       </div>
     </div>
@@ -21,6 +21,9 @@
 
 <script setup>
 import { Opportunity, Connection, Lightning } from '@element-plus/icons-vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const energyTypes = [
   {

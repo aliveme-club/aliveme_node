@@ -1,24 +1,24 @@
 <template>
   <section id="team" class="section team-section-updated">
     <div class="container mx-auto px-4">
-      <h2 class="section-title text-3xl text-center mb-16">主理人</h2>
+      <h2 class="section-title text-3xl text-center mb-16">{{ $t('components.home.TeamSection.title') }}</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- Sunny -->
         <div class="team-card fade-in">
           <div class="decorative-bg decorative-circle"></div>
           <div class="team-header">
             <div class="flex justify-between items-center">
-              <h3 class="text-2xl font-bold">Sunny林琅</h3>
-              <span class="role-badge">创始人 & CEO</span>
+              <h3 class="text-2xl font-bold">{{ $t('components.home.TeamSection.members[0].name') }}</h3>
+              <span class="role-badge">{{ $t('components.home.TeamSection.members[0].role') }}</span>
             </div>
           </div>
           <div class="team-content">
             <div class="profile-img-container">
-              <img :src="sunnyImgUrl" alt="Sunny林琅" class="profile-img">
+              <img :src="sunnyImgUrl" :alt="$t('components.home.TeamSection.members[0].alt')" class="profile-img">
             </div>
             <div class="team-bio">
-              <p>AI心理社区ALiveMe创始人，周周黑客松上海主理人，hedy.org开源编程中国区主理人（华东师大与电子科大等合作项目）。</p>
-              <p>以"人即媒介"理念链接跨领域社群，打造去中心化AI社交名片网，赋能【心理人文类】主理人。</p>
+              <p>{{ $t('components.home.TeamSection.members[0].bio1') }}</p>
+              <p>{{ $t('components.home.TeamSection.members[0].bio2') }}</p>
             </div>
           </div>
         </div>
@@ -28,17 +28,17 @@
           <div class="decorative-bg decorative-dots"></div>
           <div class="team-header">
             <div class="flex justify-between items-center">
-              <h3 class="text-2xl font-bold">Wind</h3>
-              <span class="role-badge">技术负责人</span>
+              <h3 class="text-2xl font-bold">{{ $t('components.home.TeamSection.members[1].name') }}</h3>
+              <span class="role-badge">{{ $t('components.home.TeamSection.members[1].role') }}</span>
             </div>
           </div>
           <div class="team-content">
             <div class="profile-img-container">
-              <img :src="windImgUrl" alt="Wind" class="profile-img">
+              <img :src="windImgUrl" :alt="$t('components.home.TeamSection.members[1].alt')" class="profile-img">
             </div>
             <div class="team-bio">
-              <p>负责ALiveMe技术架构与开发。金融从业AI agent搭建负责人，2023百度游戏大模王第一名。</p>
-              <p>18年老游戏玩家，2年AI新玩家，朝着游戏化人生的道路探索。</p>
+              <p>{{ $t('components.home.TeamSection.members[1].bio1') }}</p>
+              <p>{{ $t('components.home.TeamSection.members[1].bio2') }}</p>
             </div>
           </div>
         </div>
@@ -50,7 +50,9 @@
 <script setup>
 import sunnyImgUrl from '@/assets/images/team/sunny_personal_photo3.jpg';
 import windImgUrl from '@/assets/images/team/wind.jpg';
-// No script needed for this static component based on main.html
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 </script>
 
 <style scoped>

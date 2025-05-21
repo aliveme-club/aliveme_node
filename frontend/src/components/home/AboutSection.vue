@@ -1,30 +1,30 @@
 <template>
   <section id="about" class="section bg-light about-section-updated">
     <div class="container mx-auto px-4">
-      <h2 class="section-title text-3xl text-center mb-16">关于 ALiveMe</h2>
+      <h2 class="section-title text-3xl text-center mb-16">{{ $t('components.home.AboutSection.title') }}</h2>
       <div class="flex flex-col md:flex-row items-center">
         <div class="md:w-1/2 mb-10 md:mb-0 pr-0 md:pr-10 fade-in about-text-custom">
-          <h3 class="text-2xl font-bold mb-4">AI心理社区app</h3>
-          <p class="text-base mb-4">ALiveMe是国内首个AI心理社区，通过AI、心理学和游戏化理念，为用户提供智能社群管理和个人成长服务。</p>
-          <p class="text-base mb-4">ALiveMe寓意"I Love Me"，用科技读懂自己，用心理学重塑未来。</p>
+          <h3 class="text-2xl font-bold mb-4">{{ $t('components.home.AboutSection.subtitle') }}</h3>
+          <p class="text-base mb-4">{{ $t('components.home.AboutSection.description1') }}</p>
+          <p class="text-base mb-4">{{ $t('components.home.AboutSection.description2') }}</p>
           <div class="flex flex-col space-y-4 mt-6 internal-links">
-            <router-link to="/OHCard" class="text-primary hover:text-primary-dark">→ 了解并体验：OH卡</router-link>
-            <router-link to="/life-exchange" class="text-primary hover:text-primary-dark">→ 了解更多：交换人生桌游</router-link>
-            <router-link to="/women-unlimited" class="text-primary hover:text-primary-dark">→ 了解更多：无界女性活动</router-link>
+            <router-link to="/OHCard" class="text-primary hover:text-primary-dark">{{ $t('components.home.AboutSection.links.ohcard') }}</router-link>
+            <router-link to="/life-exchange" class="text-primary hover:text-primary-dark">{{ $t('components.home.AboutSection.links.lifeExchange') }}</router-link>
+            <router-link to="/women-unlimited" class="text-primary hover:text-primary-dark">{{ $t('components.home.AboutSection.links.womenUnlimited') }}</router-link>
           </div>
         </div>
         <div class="md:w-1/2 fade-in image-grid-custom" style="animation-delay: 0.3s">
           <div class="grid grid-cols-2 gap-4">
-            <img :src="eventImg1Url" alt="ALiveMe活动照片1" class="rounded-lg shadow h-40 w-full object-cover">
-            <img :src="lifeExchangeImg1Url" alt="ALiveMe活动照片2" class="rounded-lg shadow h-40 w-full object-cover">
-            <img :src="lifeExchangeImg2Url" alt="ALiveMe活动照片3" class="rounded-lg shadow h-40 w-full object-cover">
-            <img :src="alivemeIntroImgUrl" alt="ALiveMe活动照片4" class="rounded-lg shadow h-40 w-full object-cover">
+            <img :src="eventImg1Url" :alt="$t('components.home.AboutSection.images.alt1')" class="rounded-lg shadow h-40 w-full object-cover">
+            <img :src="lifeExchangeImg1Url" :alt="$t('components.home.AboutSection.images.alt2')" class="rounded-lg shadow h-40 w-full object-cover">
+            <img :src="lifeExchangeImg2Url" :alt="$t('components.home.AboutSection.images.alt3')" class="rounded-lg shadow h-40 w-full object-cover">
+            <img :src="alivemeIntroImgUrl" :alt="$t('components.home.AboutSection.images.alt4')" class="rounded-lg shadow h-40 w-full object-cover">
           </div>
         </div>
       </div>
       <!-- 用户路线图 -->
       <div class="mt-16 fade-in roadmap-container-custom">
-        <img :src="roadmapImgUrl" alt="ALiveMe用户路线图" class="w-full max-w-4xl mx-auto transform hover:scale-105 transition-transform duration-300 ease-in-out">
+        <img :src="roadmapImgUrl" :alt="$t('components.home.AboutSection.images.roadmap')" class="w-full max-w-4xl mx-auto transform hover:scale-105 transition-transform duration-300 ease-in-out">
       </div>
     </div>
   </section>
@@ -36,6 +36,9 @@ import lifeExchangeImg1Url from '@/assets/images/life-exchange/life_exchange_bet
 import lifeExchangeImg2Url from '@/assets/images/life-exchange/life_exchange_beta_photo.jpg';
 import alivemeIntroImgUrl from '@/assets/images/aliveme/aliveme_intro_beta_venue.jpg';
 import roadmapImgUrl from '@/assets/images/aliveme/user_roadmap.svg';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 // No new script imports needed based on main.html for this section
 // Removed Connection, TrendCharts, Share as the core values section from the previous Vue component is not in main.html's About section.

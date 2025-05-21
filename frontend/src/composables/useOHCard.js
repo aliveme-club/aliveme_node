@@ -63,9 +63,7 @@ export default function useOHCard() {
   const ohCardMiniContainer = ref(null)
 
   // 图片源
-  const cardImageSrc = ref('/src/assets/images/material/oh/cards/back.png')
-  // 尝试使用相对路径或绝对URL路径
-  //const cardImageSrc = ref('./assets/images/material/oh/cards/back.png') 
+  const cardImageSrc = ref('./assets/images/material/oh/cards/back.png')
   const cardBackImageSrc = ref('')
 
   // 添加图片错误处理状态
@@ -153,7 +151,7 @@ export default function useOHCard() {
           currentCardNumber.value = fallbackCardNum // 更新当前卡片编号
           
           // 使用新路径加载
-          preloadImage.src = `/src/assets/images/material/oh/cards/${fallbackCardNum}.png`
+          preloadImage.src = `./assets/images/material/oh/cards/${fallbackCardNum}.png`
         } else {
           console.log('[OH卡] 达到最大重试次数，使用SVG备用图像')
           // 使用内联SVG作为终极备用图像
@@ -162,7 +160,7 @@ export default function useOHCard() {
       }
       
       // 构造并显示图片路径
-      const cardPath = `/src/assets/images/material/oh/cards/${currentCardNumber.value}.png`
+      const cardPath = `./assets/images/material/oh/cards/${currentCardNumber.value}.png`
       console.log('[OH卡] 尝试加载卡片图片:', cardPath)
       preloadImage.src = cardPath
       
@@ -171,7 +169,7 @@ export default function useOHCard() {
       setTimeout(() => {
         // 1. 先显示卡背
         console.log('[OH卡] 显示卡背')
-        cardImageSrc.value = '/src/assets/images/material/oh/cards/back.png'
+        cardImageSrc.value = './assets/images/material/oh/cards/back.png'
         
         // 2. 添加抽取动画效果
         hasDrawnCard.value = true
@@ -190,7 +188,7 @@ export default function useOHCard() {
         setTimeout(() => {
           console.log('[OH卡] 显示实际卡片图像')
           try {
-            cardImageSrc.value = `/src/assets/images/material/oh/cards/${currentCardNumber.value}.png`
+            cardImageSrc.value = `./assets/images/material/oh/cards/${currentCardNumber.value}.png`
             console.log('[OH卡] 卡片图像已设置')
             
             // 4. 显示第一轮问题
@@ -379,7 +377,7 @@ export default function useOHCard() {
     };
 
     // 加载星盘牌背图像
-    backImg.src = '/src/assets/images/material/oh/cards/back.png';
+    backImg.src = './assets/images/material/oh/cards/back.png';
     
     // 处理图像加载失败的情况
     backImg.onerror = () => {
@@ -972,7 +970,7 @@ export default function useOHCard() {
     hasDrawnCard.value = false
     isCardFlipped.value = false
     hasCompletedQuestions.value = false
-    cardImageSrc.value = '/src/assets/images/material/oh/cards/back.png'
+    cardImageSrc.value = './assets/images/material/oh/cards/back.png'
     cardBackImageSrc.value = ''
     retryCount = 0
   }
@@ -1008,13 +1006,13 @@ export default function useOHCard() {
     console.log('[OH卡调试] 强制抽卡')
     // 使用固定的卡片编号以确保稳定性
     currentCardNumber.value = 11
-    cardImageSrc.value = '/src/assets/images/material/oh/cards/back.png'
+    cardImageSrc.value = './assets/images/material/oh/cards/back.png'
     
     setTimeout(() => {
       hasDrawnCard.value = true
       setTimeout(() => {
         try {
-          cardImageSrc.value = `/src/assets/images/material/oh/cards/${currentCardNumber.value}.png`
+          cardImageSrc.value = `./assets/images/material/oh/cards/${currentCardNumber.value}.png`
           currentRound.value = 0
         } catch (err) {
           console.error('[OH卡调试] 强制抽卡出错:', err)
@@ -1027,7 +1025,7 @@ export default function useOHCard() {
 
   const checkImagePaths = () => {
     console.log('[OH卡调试] 检查图片路径')
-    const basePath = '/src/assets/images/material/oh/cards/'
+    const basePath = './assets/images/material/oh/cards/'
     const paths = []
     
     for (let i = 11; i <= 19; i++) {
@@ -1047,14 +1045,14 @@ export default function useOHCard() {
     // 初始化日志
     console.log('[OH卡] 组件已加载')
     console.log('[OH卡] 当前步骤:', currentStep.value)
-    console.log('[OH卡] 卡片背面图片路径:', '/src/assets/images/material/oh/cards/back.png')
+    console.log('[OH卡] 卡片背面图片路径:', './assets/images/material/oh/cards/back.png')
     
     // 验证资源路径
     try {
       const testImage = new Image()
       testImage.onload = () => console.log('[OH卡] 卡背图片加载成功')
       testImage.onerror = (err) => console.error('[OH卡] 卡背图片加载失败:', err)
-      testImage.src = '/src/assets/images/material/oh/cards/back.png'
+      testImage.src = './assets/images/material/oh/cards/back.png'
     } catch (error) {
       console.error('[OH卡] 资源路径测试失败:', error)
     }

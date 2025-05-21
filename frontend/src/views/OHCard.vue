@@ -27,11 +27,11 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue'
-import OHCardHero from '@/components/oh-card/OHCardHero.vue'
-import OHCardGame from '@/components/oh-card/OHCardGame/index.vue'
-import OHCardProcess from '@/components/oh-card/OHCardProcess.vue'
-import OHCardIntroduction from '@/components/oh-card/OHCardIntroduction.vue'
-import RedrawConfirmation from '@/components/oh-card/OHCardModals/RedrawConfirmation.vue'
+import OHCardHero from '@/components/ohCard/OHCardHero.vue'
+import OHCardGame from '@/components/ohCard/OHCardGame/index.vue'
+import OHCardProcess from '@/components/ohCard/OHCardProcess.vue'
+import OHCardIntroduction from '@/components/ohCard/OHCardIntroduction.vue'
+import RedrawConfirmation from '@/components/ohCard/OHCardModals/RedrawConfirmation.vue'
 import useOHCard from '@/composables/useOHCard'
 
 // 获取OH卡游戏引用

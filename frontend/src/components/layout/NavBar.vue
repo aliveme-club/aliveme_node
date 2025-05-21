@@ -7,30 +7,36 @@
           <h1>ALiveMe</h1>
         </router-link>
       </div>
-      <el-menu
-        mode="horizontal"
-        :ellipsis="false"
-        class="nav-menu"
-      >
-        <el-menu-item index="1">
-          <router-link to="/">首页</router-link>
-        </el-menu-item>
-        <el-menu-item index="2">
-          <router-link to="/oh-card">OH卡</router-link>
-        </el-menu-item>
-        <el-menu-item index="3">
-          <router-link to="/life-exchange">交换人生</router-link>
-        </el-menu-item>
-        <el-menu-item index="4">
-          <router-link to="/women-unlimited">无界女性</router-link>
-        </el-menu-item>
-      </el-menu>
+      <div class="nav-items">
+        <el-menu
+          mode="horizontal"
+          :ellipsis="false"
+          class="nav-menu"
+        >
+          <el-menu-item index="1">
+            <router-link to="/">{{ $t('components.layout.NavBar.home') }}</router-link>
+          </el-menu-item>
+          <el-menu-item index="2">
+            <router-link to="/ohCard">{{ $t('components.layout.NavBar.ohCard') }}</router-link>
+          </el-menu-item>
+          <el-menu-item index="3">
+            <router-link to="/lifeExchange">{{ $t('components.layout.NavBar.lifeExchange') }}</router-link>
+          </el-menu-item>
+          <el-menu-item index="4">
+            <router-link to="/womenUnlimited">{{ $t('components.layout.NavBar.womenUnlimited') }}</router-link>
+          </el-menu-item>
+        </el-menu>
+        <LanguageSwitcher class="language-switcher" />
+      </div>
     </div>
   </el-header>
 </template>
 
 <script setup>
-// 导航栏逻辑
+import { useI18n } from 'vue-i18n';
+import LanguageSwitcher from '../common/LanguageSwitcher.vue';
+
+const { t } = useI18n();
 </script>
 
 <style scoped>
@@ -65,8 +71,17 @@
   color: var(--primary-color);
 }
 
+.nav-items {
+  display: flex;
+  align-items: center;
+}
+
 .nav-menu {
   border-bottom: none;
+}
+
+.language-switcher {
+  margin-left: 20px;
 }
 
 :deep(.el-menu-item) {
@@ -81,6 +96,10 @@
 @media (max-width: 768px) {
   .nav-menu {
     display: none;
+  }
+  
+  .language-switcher {
+    margin-right: 20px;
   }
 }
 </style> 

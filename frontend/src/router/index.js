@@ -1,31 +1,51 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Home from '@/views/Home.vue'
+import OhCard from '@/views/OhCard.vue'
+import LifeExchange from '@/views/LifeExchange.vue'
+import WomenUnlimited from '@/views/WomenUnlimited.vue'
+import { BASE_URL } from '@/env'
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: () => import('../views/Home.vue')
+    name: 'home',
+    component: Home
   },
   {
-    path: '/oh-card',
-    name: 'OHCard',
-    component: () => import('../views/OHCard.vue')
+    path: '/ohCard',
+    name: 'ohCard',
+    component: OhCard
+  },
+  {
+    path: '/lifeExchange',
+    name: 'lifeExchange',
+    component: LifeExchange
+  },
+  {
+    path: '/womenUnlimited',
+    name: 'womenUnlimited',
+    component: WomenUnlimited
   },
   {
     path: '/life-exchange',
-    name: 'LifeExchange',
-    component: () => import('../views/LifeExchange.vue')
+    redirect: '/lifeExchange'
   },
   {
     path: '/women-unlimited',
-    name: 'WomenUnlimited',
-    component: () => import('../views/WomenUnlimited.vue')
+    redirect: '/womenUnlimited'
   }
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
-  routes
+  history: createWebHistory(BASE_URL),
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { top: 0 }
+    }
+  }
 })
 
 export default router 

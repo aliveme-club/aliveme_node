@@ -1,7 +1,7 @@
 <template>
   <section id="features" class="section features-section">
     <div class="container mx-auto px-4">
-      <h2 class="section-title text-3xl text-center mb-16">特色服务</h2>
+      <h2 class="section-title text-3xl text-center mb-16">{{ $t('components.home.FeaturesSection.title') }}</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div v-for="(feature, index) in features" :key="index"
              class="card p-6 fade-in interactive-card" 
@@ -9,8 +9,8 @@
           <div class="feature-icon">
             <el-icon :size="40"><component :is="feature.icon" /></el-icon>
           </div>
-          <h3 class="text-xl font-bold mb-4">{{ feature.title }}</h3>
-          <p>{{ feature.description }}</p>
+          <h3 class="text-xl font-bold mb-4">{{ $t(`components.home.FeaturesSection.features[${index}].title`) }}</h3>
+          <p>{{ $t(`components.home.FeaturesSection.features[${index}].description`) }}</p>
         </div>
       </div>
     </div>
@@ -19,6 +19,9 @@
 
 <script setup>
 import { Opportunity, Connection, Notification, Key, DataAnalysis, List } from '@element-plus/icons-vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const features = [
   {

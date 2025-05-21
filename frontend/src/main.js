@@ -1,14 +1,25 @@
+// 导入环境变量配置
+import './env'
+
 import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import App from './App.vue'
 import router from './router'
 import './styles/main.css'
+import i18n from './i18n'
+import { debugI18n } from './debug-i18n'
 
 const app = createApp(App)
 
 app.use(ElementPlus)
 app.use(router)
+app.use(i18n)
+
+// 在启动前调试国际化配置
+console.log('Debug i18n before mount:')
+debugI18n()
+
 app.mount('#app')
 
 // 监视模态框容器变化

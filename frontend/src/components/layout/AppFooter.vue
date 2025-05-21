@@ -3,22 +3,22 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-section">
-          <h3>联系我们</h3>
-          <p>邮箱：sunnyz689@163.com</p>
-          <p>微信：sunnyz689</p>
-          <p>地址：base上海+国内旅行+线上社群活跃</p>
+          <h3>{{ $t('appfooter.contact') }}</h3>
+          <p>{{ $t('appfooter.emailPrefix') }}@{{ $t('appfooter.emailSuffix') }}</p>
+          <p>{{ $t('appfooter.wechat') }}</p>
+          <p>{{ $t('appfooter.address') }}</p>
         </div>
         <div class="footer-section">
-          <h3>关注我们</h3>
+          <h3>{{ $t('appfooter.followUs') }}</h3>
           <div class="qrcode">
-            <img src="../../assets/images/aliveme/qrcode.jpg" alt="微信公众号二维码" />
+            <img src="../../assets/images/aliveme/qrcode.jpg" :alt="$t('appfooter.qrcodeAlt')" />
           </div>
         </div>
       </div>
       <div class="footer-bottom">
         <p>
           <a href="https://beian.miit.gov.cn/" target="_blank">
-            ICP备案/许可证号：闽ICP备2025094014号-1
+            {{ $t('appfooter.icp') }}
           </a>
         </p>
       </div>
@@ -27,7 +27,9 @@
 </template>
 
 <script setup>
-// 页脚逻辑
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 </script>
 
 <style scoped>

@@ -9,9 +9,9 @@
 </template>
 
 <script setup>
-import HeroSection from '@/components/life-exchange/HeroSection.vue'
-import GameFeaturesSection from '@/components/life-exchange/GameFeaturesSection.vue'
-import GameIntroSection from '@/components/life-exchange/GameIntroSection.vue'
+import HeroSection from '@/components/lifeExchange/HeroSection.vue'
+import GameFeaturesSection from '@/components/lifeExchange/GameFeaturesSection.vue'
+import GameIntroSection from '@/components/lifeExchange/GameIntroSection.vue'
 </script>
 
 <style scoped>

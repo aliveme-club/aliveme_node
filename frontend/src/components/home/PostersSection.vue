@@ -1,7 +1,7 @@
 <template>
   <section class="section bg-light posters-section">
     <div class="container mx-auto px-4">
-      <h2 class="section-title text-3xl text-center centered mb-16">活动海报</h2>
+      <h2 class="section-title text-3xl text-center centered mb-16">{{ $t('components.home.PostersSection.title') }}</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         <div v-for="(poster, index) in posters" :key="index"
              class="card overflow-hidden fade-in interactive-card yellow-accent" 
@@ -17,29 +17,28 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n';
 import womenUnlimitedPosterUrl from '@/assets/images/events/women_unlimited_poster.jpg';
 import hackathonEventUrl from '@/assets/images/events/weekly_hackathon_gdc_venue.jpg';
 import charityCampPosterUrl from '@/assets/images/charity-camp/ai_product_charity_camp_poster.jpg';
 import charityCampSpeakerUrl from '@/assets/images/charity-camp/charity_camp_speaker_intro2.jpg';
 
-const posters = [
-  {
-    title: '无界女性海报',
-    imgUrl: womenUnlimitedPosterUrl
-  },
-  {
-    title: '周周黑客松与GDC大会',
-    imgUrl: hackathonEventUrl
-  },
-  {
-    title: 'AI产品公益营',
-    imgUrl: charityCampPosterUrl
-  },
-  {
-    title: '公益营主讲人',
-    imgUrl: charityCampSpeakerUrl
-  }
-];
+const { t } = useI18n();
+
+// 图片映射对象
+const imageMap = {
+  womenUnlimitedPosterUrl,
+  hackathonEventUrl,
+  charityCampPosterUrl,
+  charityCampSpeakerUrl
+};
+
+// 从i18n文件中获取海报数据，并添加图片URL
+const postersData = t('components.home.PostersSection.posters', [], { returnObjects: true });
+const posters = postersData.map(poster => ({
+  ...poster,
+  imgUrl: imageMap[poster.imgUrlKey]
+}));
 </script>
 
 <style scoped>
