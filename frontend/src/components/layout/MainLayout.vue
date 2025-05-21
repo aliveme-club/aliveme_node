@@ -1,10 +1,10 @@
 <template>
   <div class="main-layout">
-    <nav-bar />
+    <NavBar />
     <main class="main-content">
-      <router-view></router-view>
+      <RouterView></RouterView>
     </main>
-    <app-footer />
+    <AppFooter />
   </div>
 </template>
 

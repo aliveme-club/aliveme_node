@@ -47,7 +47,7 @@ const timelineItems = [
 
 <style scoped>
 .timeline-section {
-  padding: 80px 0;
+  padding: 40px 0;
   background-color: var(--background-color, #f9fafb);
 }
 
@@ -60,7 +60,7 @@ const timelineItems = [
   color: var(--text-primary, #333);
   font-size: 1.875rem;
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 1rem;
 }
 
 .timeline {
@@ -82,7 +82,7 @@ const timelineItems = [
 
 .timeline-item {
   position: relative;
-  margin-bottom: 60px;
+  margin-bottom: 10px;
   width: 100%;
 }
 
@@ -116,9 +116,9 @@ const timelineItems = [
 
 .timeline-content {
   position: relative;
-  width: calc(50% - 40px);
+  width: calc(50% );
   background: var(--card-background, #fff);
-  padding: 20px;
+  padding:5px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

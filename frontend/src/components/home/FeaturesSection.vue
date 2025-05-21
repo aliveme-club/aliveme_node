@@ -46,7 +46,7 @@ const features = [
 
 <style scoped>
 .features-section {
-  padding: 80px 0;
+  padding: 40px 0;
   background-color: var(--card-background, #fff);
 }
 
@@ -59,7 +59,7 @@ const features = [
   color: var(--text-primary, #333);
   font-size: 1.875rem;
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 1rem;
 }
 
 .grid {

@@ -13,6 +13,23 @@
             width: 100%;
             border: none;
             min-height: 100vh;
+            display: block;
+        }
+        
+        /* 隐藏页面滚动条，但允许滚动 */
+        body {
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .iframe-container {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
         }
     </style>
 </head>
@@ -29,6 +46,7 @@
                 <a href="pages/oh-card.html" class="nav-link">OH卡</a>
                 <a href="pages/life-exchange.html" class="nav-link">交换人生</a>
                 <a href="pages/women-unlimited.html" class="nav-link">无界女性</a>
+                <a href="#" class="nav-link" onclick="scrollToSection('contact')">联系我们</a>
             </div>
             <button class="md:hidden focus:outline-none" id="mobile-menu-button">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -36,18 +54,20 @@
                 </svg>
             </button>
             <div class="mobile-menu hidden absolute top-full left-0 right-0 bg-white shadow-md py-4 px-4 md:hidden">
-                <a href="#about" class="block py-2 hover:text-primary">关于我们</a>
-                <a href="#team" class="block py-2 hover:text-primary">主理人</a>
-                <a href="#timeline" class="block py-2 hover:text-primary">发展历程</a>
-                <a href="#features" class="block py-2 hover:text-primary">特色服务</a>
-                <a href="#partners" class="block py-2 hover:text-primary">合作伙伴</a>
-                <a href="#contact" class="block py-2 hover:text-primary">加入我们</a>
+                <a href="#" onclick="scrollToSection('about')" class="block py-2 hover:text-primary">关于我们</a>
+                <a href="#" onclick="scrollToSection('team')" class="block py-2 hover:text-primary">主理人</a>
+                <a href="#" onclick="scrollToSection('timeline')" class="block py-2 hover:text-primary">发展历程</a>
+                <a href="#" onclick="scrollToSection('features')" class="block py-2 hover:text-primary">特色服务</a>
+                <a href="#" onclick="scrollToSection('partners')" class="block py-2 hover:text-primary">合作伙伴</a>
+                <a href="#" onclick="scrollToSection('contact')" class="block py-2 hover:text-primary">联系我们</a>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <iframe src="main.html" id="main-content"></iframe>
+    <div class="iframe-container">
+        <iframe src="main.html" id="main-content" scrolling="yes"></iframe>
+    </div>
 
     <!-- Footer -->
     <footer id="contact" class="footer">
@@ -85,5 +105,39 @@
     </footer>
 
     <script src="scripts.js"></script>
+    <script>
+        // 处理iframe内部滚动到指定部分
+        function scrollToSection(sectionId) {
+            const iframe = document.getElementById('main-content');
+            iframe.contentWindow.postMessage({
+                type: 'scrollToSection',
+                sectionId: sectionId
+            }, '*');
+            
+            // 关闭移动菜单（如果打开）
+            document.querySelector('.mobile-menu').classList.add('hidden');
+            
+            return false;
+        }
+        
+        // 移动菜单交互
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.querySelector('.mobile-menu').classList.toggle('hidden');
+        });
+        
+        // 页面加载完成后设置iframe高度
+        window.addEventListener('load', function() {
+            resizeIframe();
+        });
+        
+        // 调整iframe高度
+        function resizeIframe() {
+            const iframe = document.getElementById('main-content');
+            iframe.style.height = window.innerHeight - document.querySelector('nav').offsetHeight + 'px';
+        }
+        
+        // 窗口大小变化时调整iframe高度
+        window.addEventListener('resize', resizeIframe);
+    </script>
 </body>
 </html>

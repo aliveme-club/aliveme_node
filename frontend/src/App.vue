@@ -5,7 +5,7 @@ import MainLayout from './components/layout/MainLayout.vue'
 
 <template>
   <el-config-provider>
-    <main-layout />
+    <MainLayout />
   </el-config-provider>
 </template>
 

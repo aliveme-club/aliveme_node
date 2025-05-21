@@ -8,6 +8,9 @@
           <p class="text-lg mb-8">融合 AI、心理学与游戏化的名片网社区工具，帮你提升自我认知与人际链接。</p>
           <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 cta-buttons-custom">
             <el-button type="primary" size="large" @click="scrollToAbout" class="btn-custom-primary">了解更多</el-button>
+            <router-link to="/oh-card">
+              <el-button type="success" size="large" class="btn-custom-oh-card">体验OH卡</el-button>
+            </router-link>
             <el-button size="large" @click="scrollToContact" class="btn-custom-outline">加入我们</el-button>
           </div>
         </div>
@@ -20,7 +23,10 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
 import heroImageUrl from '@/assets/images/team/sunnyonthe38meeting.jpg';
+
+const router = useRouter();
 
 const scrollToAbout = () => {
   document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
@@ -29,15 +35,20 @@ const scrollToAbout = () => {
 const scrollToContact = () => {
   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
 };
+
+const goToOhCard = () => {
+  router.push('/oh-card');
+};
 </script>
 
 <style scoped>
 /* Styles adapted from main.html and HeroSection.vue original styles */
 .hero-section {
-  min-height: 100vh; /* Or adjust as needed */
-  background: linear-gradient(135deg, var(--primary-color, #4A90E2) 0%, var(--secondary-color, #8E44AD) 100%); /* Default gradient if vars not set */
+  height: 550px; /* Unified height */
+  overflow: hidden; /* Prevent content overflow */
+  background: linear-gradient(to right, #56C271, #4A90E2); /* Standardized gradient */
   color: white;
-  padding: 80px 0;
+  padding: 80px 0; /* Standardized padding */
   display: flex;
   align-items: center;
 }
@@ -177,6 +188,16 @@ const scrollToContact = () => {
 .btn-custom-primary.el-button--primary:hover {
   background-color: #f3f4f6 !important; /* gray-100 */
   color: var(--primary-color, #4A90E2) !important;
+}
+
+.btn-custom-oh-card.el-button--success {
+  background-color: #10b981 !important;
+  color: white !important;
+  border-color: #10b981 !important;
+}
+.btn-custom-oh-card.el-button--success:hover {
+  background-color: #059669 !important;
+  transform: translateY(-2px);
 }
 
 .btn-custom-outline.el-button {

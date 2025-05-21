@@ -1,0 +1,54 @@
+# Element Plus 常见错误及解决方案
+
+## 图标导入错误
+
+### 问题
+报错信息如下：
+```
+SyntaxError: The requested module '/node_modules/.vite/deps/@element-plus_icons-vue.js?v=xxx' does not provide an export named 'Light'
+```
+
+这是由于Element Plus的图标系统在更新过程中可能有变化，当尝试导入不存在的图标组件时会出现此错误。
+
+### 解决方案
+1. 查看当前Element Plus支持的图标列表：https://element-plus.org/en-US/component/icon.html#icon-collection
+2. 使用正确的图标名称：
+```js
+// 错误的导入
+import { Light, User } from '@element-plus/icons-vue'
+
+// 正确的导入 (用Sunny替代Light)
+import { Sunny, User } from '@element-plus/icons-vue'
+```
+
+3. 添加自动导入插件（推荐）：
+```
+npm install -D unplugin-auto-import unplugin-vue-components
+```
+
+然后在vite.config.js中添加：
+```js
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+
+export default defineConfig({
+  plugins: [
+    vue(),
+    AutoImport({
+      resolvers: [ElementPlusResolver()],
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()],
+    }),
+  ],
+})
+```
+
+## Vue Router路径区分大小写问题
+
+### 问题
+路由路径区分大小写，例如在URL中输入'/OHCard'而路由定义为'/oh-card'将无法匹配。
+
+### 解决方案
+确保路由定义与所有引用路由的地方保持一致，建议使用全小写、中横线连接命名法，如'/oh-card'。 

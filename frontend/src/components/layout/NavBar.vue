@@ -3,7 +3,7 @@
     <div class="container flex-between">
       <div class="logo">
         <router-link to="/">
-          <img src="../../assets/images/aliveme/aliveme logo.jpg" alt="ALiveMe Logo" class="logo-img">
+          <img src="@/assets/images/aliveme/aliveme_logo.jpg" alt="ALiveMe Logo" class="logo-img">
           <h1>ALiveMe</h1>
         </router-link>
       </div>

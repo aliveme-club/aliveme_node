@@ -11,25 +11,26 @@
 </head>
 <body>
     <!-- 右侧快速跳转栏 -->
-    <div class="hidden md:flex flex-col fixed right-4 top-1/2 transform -translate-y-1/2 space-y-4 bg-white p-4 rounded-lg shadow-lg">
+    <div class="hidden md:flex flex-col fixed right-4 top-1/2 transform -translate-y-1/2 space-y-4 bg-white p-4 rounded-lg shadow-lg z-10">
         <a href="#about" class="nav-link">关于我们</a>
         <a href="#team" class="nav-link">主理人</a>
         <a href="#timeline" class="nav-link">发展历程</a>
         <a href="#features" class="nav-link">特色服务</a>
         <a href="#partners" class="nav-link">合作伙伴</a>
+        <a href="#contact" class="nav-link">联系我们</a>
     </div>
 
     <!-- 1. Hero Section (封面) -->
     <section class="hero-section text-white">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center">
+        <div class="container mx-auto px-4 py-6 md:py-0">
+            <div class="flex flex-col md:flex-row items-center justify-between">
                 <div class="md:w-1/2 mb-10 md:mb-0 fade-in">
                     <h1 class="text-4xl md:text-6xl font-bold mb-4">ALiveMe</h1>
                     <p class="text-xl md:text-2xl mb-6">爱自己、活出真我</p>
                     <p class="text-lg mb-8">融合 AI、心理学与游戏化的名片网社区工具，帮你提升自我认知与人际链接。</p>
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#about" class="btn btn-primary bg-white text-primary hover:bg-gray-100">了解更多</a>
-                        <a href="#contact" class="btn btn-outline-light border-2 border-white px-8 py-3 rounded-full hover:bg-white hover:text-primary transition">加入我们</a>
+                        <a href="#about" class="btn btn-primary bg-white text-primary hover:bg-gray-100 text-center">了解更多</a>
+                        <a href="#contact" class="btn btn-outline-light border-2 border-white px-8 py-3 rounded-full hover:bg-white hover:text-primary transition text-center">加入我们</a>
                     </div>
                 </div>
                 <div class="md:w-1/2 fade-in" style="animation-delay: 0.3s">
@@ -40,7 +41,7 @@
     </section>
 
     <!-- 2. About Section (关于 ALiveMe) -->
-    <section id="about" class="section bg-light">
+    <section id="about" class="section light-green-bg section-transition green-to-blue">
         <div class="container mx-auto px-4">
             <h2 class="section-title text-3xl text-center mb-16">关于 ALiveMe</h2>
             <div class="flex flex-col md:flex-row items-center">
@@ -71,7 +72,7 @@
     </section>
 
     <!-- 3. Team Section (主理人) -->
-    <section id="team" class="section">
+    <section id="team" class="section light-blue-bg section-transition blue-to-yellow">
         <div class="container mx-auto px-4">
             <h2 class="section-title text-3xl text-center mb-16">主理人</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -119,43 +120,31 @@
     </section>
 
     <!-- 4. Timeline Section (发展历程) -->
-    <section id="timeline" class="section bg-light">
+    <section id="timeline" class="section light-yellow-bg section-transition yellow-to-green">
         <div class="container mx-auto px-4">
-            <h2 class="section-title text-3xl text-center mb-16">发展历程</h2>
+            <h2 class="section-title text-3xl text-center mb-12">发展历程</h2>
             <div class="timeline">
                 <div class="timeline-item fade-in">
                     <div class="timeline-content">
-                        <h3 class="font-bold text-xl mb-2">2024年12月13日</h3>
-                        <p>《交换人生》剧本桌游在40小时内诞生，为用户创造链接的破冰桌游完成初稿设计。</p>
+                        <h3 class="font-bold text-xl mb-2">2024年12月</h3>
+                        <p>《交换人生》剧本桌游在40小时内诞生并首次试玩，获得参与者积极反馈。</p>
                     </div>
                 </div>
                 <div class="timeline-item fade-in" style="animation-delay: 0.2s">
                     <div class="timeline-content">
-                        <h3 class="font-bold text-xl mb-2">2024年12月15日</h3>
-                        <p>《交换人生》剧本桌游首次试玩，获得参与者积极反馈。</p>
+                        <h3 class="font-bold text-xl mb-2">2025年1月</h3>
+                        <p>betterme更名为ALiveme，确立新的品牌定位和发展方向。</p>
                     </div>
                 </div>
                 <div class="timeline-item fade-in" style="animation-delay: 0.4s">
                     <div class="timeline-content">
-                        <h3 class="font-bold text-xl mb-2">2025年1月20日</h3>
-                        <p>betterme更名为ALiveme，确立新的品牌定位和发展方向。</p>
+                        <h3 class="font-bold text-xl mb-2">2025年2月</h3>
+                        <p>ALiveme社群idea诞生，确立以AI+心理为核心的社区建设计划，首次核心团队会议召开。</p>
                     </div>
                 </div>
                 <div class="timeline-item fade-in" style="animation-delay: 0.6s">
                     <div class="timeline-content">
-                        <h3 class="font-bold text-xl mb-2">2025年2月1日</h3>
-                        <p>ALiveme社群idea诞生，确立以AI+心理为核心的社区建设计划。</p>
-                    </div>
-                </div>
-                <div class="timeline-item fade-in" style="animation-delay: 0.8s">
-                    <div class="timeline-content">
-                        <h3 class="font-bold text-xl mb-2">2025年2月4日</h3>
-                        <p>AI+心理首次核心团队会议，确立产品开发路线和技术框架。</p>
-                    </div>
-                </div>
-                <div class="timeline-item fade-in" style="animation-delay: 1s">
-                    <div class="timeline-content">
-                        <h3 class="font-bold text-xl mb-2">2025年5月24日</h3>
+                        <h3 class="font-bold text-xl mb-2">2025年5月</h3>
                         <p>ALiveMe产品正式发布会暨上海无界女性百人大会。</p>
                     </div>
                 </div>
@@ -164,7 +153,7 @@
     </section>
 
     <!-- 5. Features Section (特色服务) -->
-    <section id="features" class="section">
+    <section id="features" class="section light-green-bg section-transition green-to-blue">
         <div class="container mx-auto px-4">
             <h2 class="section-title text-3xl text-center mb-16">特色服务</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -210,7 +199,7 @@
     </section>
 
     <!-- 6. Partners Section (合作伙伴) -->
-    <section id="partners" class="section yellow-bg">
+    <section id="partners" class="section light-blue-bg section-transition blue-to-yellow">
         <div class="container mx-auto px-4">
             <h2 class="section-title text-3xl text-center centered mb-16">合作伙伴</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -293,7 +282,7 @@
     </section>
 
     <!-- 7. Energy Section (三色能量社区) -->
-    <section class="energy-section">
+    <section class="section light-yellow-bg section-transition yellow-to-green">
         <div class="container mx-auto px-4">
             <h2 class="section-title text-3xl text-center centered mb-16">三色能量社区</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -332,7 +321,7 @@
     </section>
 
     <!-- 8. Collaboration Section (项目合作介绍) -->
-    <section class="collaboration-section">
+    <section class="section light-green-bg section-transition green-to-blue">
         <div class="container mx-auto px-4">
             <h2 class="section-title text-3xl text-center centered mb-16">项目合作介绍</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -384,7 +373,7 @@
     </section>
 
     <!-- 9. Posters Section (活动海报) -->
-    <section class="section bg-light">
+    <section class="section light-blue-bg">
         <div class="container mx-auto px-4">
             <h2 class="section-title text-3xl text-center centered mb-16">活动海报</h2>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -404,6 +393,82 @@
         </div>
     </section>
 
+    <!-- 10. Contact Section (联系我们) -->
+    <section id="contact" class="section light-yellow-bg">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-3xl text-center centered mb-16">联系我们</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card p-6 fade-in">
+                    <h3 class="text-xl font-bold mb-4">加入我们</h3>
+                    <p class="mb-4">邮箱：sunnyz689@163.com</p>
+                    <p class="mb-4">微信：sunnyz689</p>
+                    <p>地址：base上海+国内旅行+线上社群活跃</p>
+                </div>
+                <div class="card p-6 fade-in" style="animation-delay: 0.2s">
+                    <h3 class="text-xl font-bold mb-4">关注我们</h3>
+                    <div class="flex flex-col items-center">
+                        <img src="public/aliveme/qrcode.jpg" alt="微信公众号二维码" class="w-32 h-32 mb-4">
+                        <p>扫码关注微信公众号</p>
+                    </div>
+                </div>
+                <div class="card p-6 fade-in" style="animation-delay: 0.3s">
+                    <h3 class="text-xl font-bold mb-4">快速链接</h3>
+                    <ul>
+                        <li class="mb-3"><a href="#about" class="hover:text-accent">关于我们</a></li>
+                        <li class="mb-3"><a href="#team" class="hover:text-accent">主理人</a></li>
+                        <li class="mb-3"><a href="#timeline" class="hover:text-accent">发展历程</a></li>
+                        <li class="mb-3"><a href="#features" class="hover:text-accent">特色服务</a></li>
+                        <li><a href="#partners" class="hover:text-accent">合作伙伴</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <p>
+                    <span>ICP备案/许可证号：</span>
+                    <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener" class="text-blue-600 hover:underline">闽ICP备2025094014号-1</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
     <script src="scripts.js"></script>
+    <script>
+        // 处理来自父页面的滚动消息
+        window.addEventListener('message', function(event) {
+            if (event.data && event.data.type === 'scrollToSection') {
+                const sectionId = event.data.sectionId;
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+
+        // 页面加载时添加淡入动画
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有带有fade-in类的元素
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            // 创建Intersection Observer来监测元素是否进入视口
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // 如果元素进入视口，添加active类
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // 一旦添加了active类，停止监测该元素
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                // 元素20%进入视口时触发
+                threshold: 0.2
+            });
+            
+            // 对每个元素进行监测
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
 </body>
 </html>

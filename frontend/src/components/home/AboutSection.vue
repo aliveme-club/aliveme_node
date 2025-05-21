@@ -8,7 +8,7 @@
           <p class="text-base mb-4">ALiveMe是国内首个AI心理社区，通过AI、心理学和游戏化理念，为用户提供智能社群管理和个人成长服务。</p>
           <p class="text-base mb-4">ALiveMe寓意"I Love Me"，用科技读懂自己，用心理学重塑未来。</p>
           <div class="flex flex-col space-y-4 mt-6 internal-links">
-            <router-link to="/oh-card" class="text-primary hover:text-primary-dark">→ 了解并体验：OH卡</router-link>
+            <router-link to="/OHCard" class="text-primary hover:text-primary-dark">→ 了解并体验：OH卡</router-link>
             <router-link to="/life-exchange" class="text-primary hover:text-primary-dark">→ 了解更多：交换人生桌游</router-link>
             <router-link to="/women-unlimited" class="text-primary hover:text-primary-dark">→ 了解更多：无界女性活动</router-link>
           </div>
