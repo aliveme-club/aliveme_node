@@ -57,6 +57,13 @@ const { t } = useI18n();
 const userInput = ref('');
 const messagesContainer = ref(null);
 
+// API Configuration from environment variables
+const OPENAI_BASE_URL = import.meta.env.VITE_OPENAI_BASE_URL;
+const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
+const OPENAI_MODEL = import.meta.env.VITE_OPENAI_MODEL || 'deepseek-chat'; // Default if not set
+const SYSTEM_PROMPT = '你是我的活动推荐助手，请根据我的需求推荐活动。请只使用中文回答。';
+const MAX_CONVERSATION_HISTORY_ROUNDS = 3; // 记录的用户会话轮数
+
 // 初始化消息列表
 const messages = ref([
   {
@@ -74,7 +81,9 @@ function formatTime(date) {
 }
 
 // 滚动聊天窗口到底部
-const scrollChatToBottom = () => {
+const scrollChatToBottom = async () => {
+  // Ensure DOM is updated before scrolling
+  await nextTick();
   if (messagesContainer.value) {
     messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight;
   }
@@ -83,7 +92,8 @@ const scrollChatToBottom = () => {
 // 发送消息
 const sendMessage = async () => {
   if (!userInput.value.trim()) return;
-  
+  console.log(`[用户输入] ${userInput.value}`);
+
   // 添加用户消息
   messages.value.push({
     content: userInput.value,
@@ -91,27 +101,96 @@ const sendMessage = async () => {
     time: formatTime(new Date())
   });
   
-  // 清空输入框
-  const userMessage = userInput.value;
-  userInput.value = '';
+  const currentUserMessage = userInput.value;
+  userInput.value = ''; // 清空输入框
   
-  // 滚动聊天窗口到底部
-  await nextTick();
-  scrollChatToBottom();
-  
-  // 模拟AI回复延迟
-  setTimeout(() => {
+  await scrollChatToBottom(); // Scroll after adding user message and clearing input
+
+  // 准备发送给API的消息
+  const constructApiMessages = () => {
+    const history = messages.value.map(msg => ({
+      role: msg.sender === 'user' ? 'user' : (msg.sender === 'assistant' ? 'assistant' : 'system'),
+      content: msg.content
+    }));
+
+    // 保留最近的 MAX_CONVERSATION_HISTORY_ROUNDS * 2 条消息 (用户 + AI)
+    // +1 for the current user message that was just added but not yet part of 'history' if we sliced before pushing
+    const relevantHistory = messages.value.slice(-(MAX_CONVERSATION_HISTORY_ROUNDS * 2 + 1));
+
+
+    return [
+      { role: 'system', content: SYSTEM_PROMPT },
+      ...relevantHistory.map(msg => ({ // Map again to ensure correct role
+          role: msg.sender === 'user' ? 'user' : 'assistant',
+          content: msg.content
+      }))
+    ];
+  };
+
+  const apiMessages = constructApiMessages();
+  console.log('[API请求体构造完成]', JSON.stringify(apiMessages, null, 2));
+
+  if (!OPENAI_BASE_URL || !OPENAI_API_KEY || !OPENAI_MODEL) {
+    console.error('[API配置错误] VITE_OPENAI_BASE_URL, VITE_OPENAI_API_KEY, and VITE_OPENAI_MODEL 必须在 .env 文件中设置。');
     messages.value.push({
-      content: '你好，我是你的活动推荐小助手~请说出你的需求',
+      content: '抱歉，AI助手未正确配置，请检查环境变量设置并联系管理员。',
       sender: 'assistant',
       time: formatTime(new Date())
     });
-    
-    // 再次滚动聊天窗口到底部
-    nextTick(() => {
-      scrollChatToBottom();
+    await scrollChatToBottom();
+    return;
+  }
+  
+  try {
+    console.log(`[调用API] URL: ${OPENAI_BASE_URL}/v1/chat/completions, Model: ${OPENAI_MODEL}`);
+    const response = await fetch(`${OPENAI_BASE_URL}/v1/chat/completions`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: OPENAI_MODEL,
+        messages: apiMessages,
+        // stream: false, // 如果需要流式响应，请设置为 true 并相应处理
+      })
     });
-  }, 500);
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({ message: response.statusText }));
+      console.error('[API响应错误]', response.status, errorData);
+      throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.message || 'Unknown error'}`);
+    }
+
+    const data = await response.json();
+    console.log('[API响应成功]', JSON.stringify(data, null, 2));
+    
+    const assistantReply = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+
+    if (assistantReply) {
+      messages.value.push({
+        content: assistantReply.trim(),
+        sender: 'assistant',
+        time: formatTime(new Date())
+      });
+    } else {
+      console.error('[API响应格式问题] 未找到有效的助手回复。', data);
+      messages.value.push({
+        content: '抱歉，AI助手暂时无法回复，请稍后再试。 (响应解析失败)',
+        sender: 'assistant',
+        time: formatTime(new Date())
+      });
+    }
+  } catch (error) {
+    console.error('[调用LLM API失败]', error);
+    messages.value.push({
+      content: `抱歉，与AI助手通信时发生错误: ${error.message}`,
+      sender: 'assistant',
+      time: formatTime(new Date())
+    });
+  } finally {
+    await scrollChatToBottom();
+  }
 };
 
 const scrollToAbout = () => {
