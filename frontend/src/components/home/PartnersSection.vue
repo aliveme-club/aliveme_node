@@ -61,19 +61,50 @@ const imageMap = {
   sunnyAtRoundtableImgUrl
 };
 
+// 添加默认数据以防i18n配置问题
+const defaultPartners = [
+  {
+    name: '覃貌Tim',
+    imgUrlKey: 'timImgUrl',
+    description: 'ALiveMe商业与运营顾问，Zion无代码生态负责人，服务27万开发者与700万用户。'
+  },
+  {
+    name: 'Cherax',
+    imgUrlKey: 'cheraxImgUrl',
+    description: 'ALiveMe社区理念顾问，生物学硕士，人生阈值理念提出者。'
+  }
+];
+
+const defaultOrganizations = [
+  {
+    name: '模速空间',
+    imgUrlKey: 'modusSpaceImgUrl'
+  },
+  {
+    name: '中医系列',
+    imgUrlKey: 'chineseMedicineImgUrl'
+  }
+];
+
 // 从i18n文件中获取合作伙伴数据，并添加图片URL
-const partnersData = t('components.home.PartnersSection.partners', [], { returnObjects: true }) || [];
+const partnersData = t('components.home.PartnersSection.partners', [], { returnObjects: true }) || defaultPartners;
 const partners = Array.isArray(partnersData) ? partnersData.map(partner => ({
   ...partner,
   imgUrl: imageMap[partner.imgUrlKey]
-})) : [];
+})) : defaultPartners.map(partner => ({
+  ...partner,
+  imgUrl: imageMap[partner.imgUrlKey]
+}));
 
 // 从i18n文件中获取组织数据，并添加图片URL
-const organizationsData = t('components.home.PartnersSection.organizations', [], { returnObjects: true }) || [];
+const organizationsData = t('components.home.PartnersSection.organizations', [], { returnObjects: true }) || defaultOrganizations;
 const organizations = Array.isArray(organizationsData) ? organizationsData.map(org => ({
   ...org,
   imgUrl: imageMap[org.imgUrlKey]
-})) : [];
+})) : defaultOrganizations.map(org => ({
+  ...org,
+  imgUrl: imageMap[org.imgUrlKey]
+}));
 </script>
 
 <style scoped>

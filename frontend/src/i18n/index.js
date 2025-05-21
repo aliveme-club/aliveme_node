@@ -192,7 +192,8 @@ const i18n = createI18n({
   legacy: false, // 使用Composition API
   locale: getDefaultLocale(),
   fallbackLocale: 'zh-CN',
-  messages
+  messages,
+  missingWarn: false // 禁用缺少翻译键的警告
 })
 
 // 设置语言的函数
