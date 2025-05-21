@@ -152,37 +152,94 @@ const sendMessage = async () => {
       body: JSON.stringify({
         model: OPENAI_MODEL,
         messages: apiMessages,
-        // stream: false, // 如果需要流式响应，请设置为 true 并相应处理
+        stream: true, // 启用流式响应
       })
     });
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ message: response.statusText }));
-      console.error('[API响应错误]', response.status, errorData);
-      throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.message || 'Unknown error'}`);
+      // Attempt to read error body for more details
+      let errorDetails = response.statusText;
+      try {
+        const errorData = await response.json();
+        errorDetails = errorData.error?.message || errorData.message || JSON.stringify(errorData);
+        console.error('[API响应错误主体]', errorData);
+      } catch (e) {
+        console.error('[API响应错误] 无法解析错误JSON主体', e);
+      }
+      console.error('[API响应错误]', response.status, errorDetails);
+      throw new Error(`HTTP error! status: ${response.status}, message: ${errorDetails}`);
     }
 
-    const data = await response.json();
-    console.log('[API响应成功]', JSON.stringify(data, null, 2));
-    
-    const assistantReply = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
-
-    if (assistantReply) {
-      messages.value.push({
-        content: assistantReply.trim(),
-        sender: 'assistant',
-        time: formatTime(new Date())
-      });
-    } else {
-      console.error('[API响应格式问题] 未找到有效的助手回复。', data);
-      messages.value.push({
-        content: '抱歉，AI助手暂时无法回复，请稍后再试。 (响应解析失败)',
-        sender: 'assistant',
-        time: formatTime(new Date())
-      });
+    // 处理流式响应
+    if (!response.body) {
+      throw new Error('Response body is null');
     }
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder('utf-8');
+    let accumulatedContent = '';
+
+    // 为助手消息添加一个占位符，稍后填充内容
+    const assistantMessageId = messages.value.length;
+    messages.value.push({
+      content: '', // 初始为空，逐步填充
+      sender: 'assistant',
+      time: formatTime(new Date())
+    });
+    await scrollChatToBottom();
+
+    let parsingBuffer = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) {
+        console.log('[流结束]');
+        break;
+      }
+      
+      parsingBuffer += decoder.decode(value, { stream: true });
+      
+      // 按行处理SSE数据
+      let newlineIndex;
+      while ((newlineIndex = parsingBuffer.indexOf('\n')) >= 0) {
+        const line = parsingBuffer.substring(0, newlineIndex).trim();
+        parsingBuffer = parsingBuffer.substring(newlineIndex + 1);
+
+        if (line.startsWith('data: ')) {
+          const jsonStr = line.substring(5).trim();
+          if (jsonStr === '[DONE]') {
+            console.log('[流处理完成信号]');
+            // [DONE] 标记表示结束，可以提前退出循环，但通常依赖于reader.read()的done状态
+            // 确保最终的scrollChatToBottom被调用
+          } else {
+            try {
+              const parsed = JSON.parse(jsonStr);
+              if (parsed.choices && parsed.choices[0] && parsed.choices[0].delta) {
+                const contentChunk = parsed.choices[0].delta.content;
+                if (contentChunk) {
+                  accumulatedContent += contentChunk;
+                  messages.value[assistantMessageId].content = accumulatedContent;
+                  // 频繁滚动可能会影响性能，可以考虑节流或仅在必要时滚动
+                  // 但对于聊天应用，通常期望实时滚动
+                  await scrollChatToBottom(); 
+                }
+                if (parsed.choices[0].finish_reason) {
+                  console.log('[流完成原因]', parsed.choices[0].finish_reason);
+                  // finish_reason也表示流的结束
+                  // 可以在这里处理额外的逻辑，例如保存完整的消息等
+                }
+              }
+            } catch (e) {
+              console.error('[流数据解析错误]', e, '原始数据:', jsonStr);
+            }
+          }
+        }
+      }
+    }
+    // 确保最后一次解码缓冲区中剩余的内容（如果有的话，尽管在SSE中不常见）
+    // 对于SSE，通常是以换行符分隔的，所以上面的循环应该处理完所有数据
+
   } catch (error) {
-    console.error('[调用LLM API失败]', error);
+    console.error('[调用LLM API或处理流失败]', error);
     messages.value.push({
       content: `抱歉，与AI助手通信时发生错误: ${error.message}`,
       sender: 'assistant',
