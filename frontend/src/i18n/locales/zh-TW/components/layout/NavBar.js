@@ -3,6 +3,7 @@ export default {
   ohCard: 'OH卡體驗',
   lifeExchange: '交換人生',
   womenUnlimited: '無界女性',
+  chat: '智能助手',
   activities: '活動推薦',
   language: '語言',
   login: '登錄',

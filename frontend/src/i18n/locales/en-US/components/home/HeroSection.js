@@ -4,5 +4,5 @@ export default {
   description: 'Helping you enhance self-awareness and interpersonal connections.',
   actionButton: 'Learn more.',
   contact: 'Contact Us',
-  joinNow: 'Join us.',
+  joinNow: 'Draw OH Card.'
 }

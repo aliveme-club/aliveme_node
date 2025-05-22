@@ -63,21 +63,25 @@ import enUS_home_EnergyCommunitySection from './locales/en-US/components/home/En
 import zhTW_home_EnergyCommunitySection from './locales/zh-TW/components/home/EnergyCommunitySection.js'
 
 // 导入OH卡组件翻译
-import zhCN_ohCard_OHCardHero from './locales/zh-CN/components/ohCard/OHCardHero.js'
-import enUS_ohCard_OHCardHero from './locales/en-US/components/ohCard/OHCardHero.js'
-import zhTW_ohCard_OHCardHero from './locales/zh-TW/components/ohCard/OHCardHero.js'
+import zhCN_ohCard_OHCardHero from './locales/zh-CN/components/ohCard/OHCardGame/OHCardHero.js'
+import enUS_ohCard_OHCardHero from './locales/en-US/components/ohCard/OHCardGame/OHCardHero.js'
+import zhTW_ohCard_OHCardHero from './locales/zh-TW/components/ohCard/OHCardGame/OHCardHero.js'
 
-import zhCN_ohCard_OHCardProcess from './locales/zh-CN/components/ohCard/OHCardProcess.js'
-import enUS_ohCard_OHCardProcess from './locales/en-US/components/ohCard/OHCardProcess.js'
-import zhTW_ohCard_OHCardProcess from './locales/zh-TW/components/ohCard/OHCardProcess.js'
+import zhCN_ohCard_OHCardProcess from './locales/zh-CN/components/ohCard/OHCardGame/OHCardProcess.js'
+import enUS_ohCard_OHCardProcess from './locales/en-US/components/ohCard/OHCardGame/OHCardProcess.js'
+import zhTW_ohCard_OHCardProcess from './locales/zh-TW/components/ohCard/OHCardGame/OHCardProcess.js'
 
-import zhCN_ohCard_OHCardIntroduction from './locales/zh-CN/components/ohCard/OHCardIntroduction.js'
-import enUS_ohCard_OHCardIntroduction from './locales/en-US/components/ohCard/OHCardIntroduction.js'
-import zhTW_ohCard_OHCardIntroduction from './locales/zh-TW/components/ohCard/OHCardIntroduction.js'
+import zhCN_ohCard_OHCardIntroduction from './locales/zh-CN/components/ohCard/OHCardGame/OHCardIntroduction.js'
+import enUS_ohCard_OHCardIntroduction from './locales/en-US/components/ohCard/OHCardGame/OHCardIntroduction.js'
+import zhTW_ohCard_OHCardIntroduction from './locales/zh-TW/components/ohCard/OHCardGame/OHCardIntroduction.js'
 
-import zhCN_ohCard_index from './locales/zh-CN/components/ohCard/index.js'
-import enUS_ohCard_index from './locales/en-US/components/ohCard/index.js'
-import zhTW_ohCard_index from './locales/zh-TW/components/ohCard/index.js'
+import zhCN_ohCard_index from './locales/zh-CN/components/ohCard/OHCardGame/index.js'
+import enUS_ohCard_index from './locales/en-US/components/ohCard/OHCardGame/index.js'
+import zhTW_ohCard_index from './locales/zh-TW/components/ohCard/OHCardGame/index.js'
+
+import zhCN_ohCard_useOHCard from './locales/zh-CN/components/ohCard/OHCardGame/useOHCard.js'
+import enUS_ohCard_useOHCard from './locales/en-US/components/ohCard/OHCardGame/useOHCard.js'
+import zhTW_ohCard_useOHCard from './locales/zh-TW/components/ohCard/OHCardGame/useOHCard.js'
 
 // OH卡游戏组件翻译
 import zhCN_ohCard_IntroStep from './locales/zh-CN/components/ohCard/OHCardGame/IntroStep.js'
@@ -156,6 +160,9 @@ import zhCN_chat_Assistants from './locales/zh-CN/components/chat/Assistants.js'
 import enUS_chat_Assistants from './locales/en-US/components/chat/Assistants.js'
 import zhTW_chat_Assistants from './locales/zh-TW/components/chat/Assistants.js'
 
+import zhCN_chat_AgentSelector from './locales/zh-CN/components/chat/AgentSelector.js'
+import enUS_chat_AgentSelector from './locales/en-US/components/chat/AgentSelector.js'
+import zhTW_chat_AgentSelector from './locales/zh-TW/components/chat/AgentSelector.js'
 
 // 创建消息对象
 const messages = {
@@ -192,7 +199,8 @@ const messages = {
           CardFront: zhCN_ohCard_CardFront,
           CardBack: zhCN_ohCard_CardBack,
           QuestionOption: zhCN_ohCard_QuestionOption,
-          FinalStep: zhCN_ohCard_FinalStep
+          FinalStep: zhCN_ohCard_FinalStep,
+          useOHCard: zhCN_ohCard_useOHCard
         },
         OHCardModals: {
           SimpleModal: zhCN_ohCard_SimpleModal,
@@ -212,7 +220,8 @@ const messages = {
       },
       chat: {
         ChatWindow: zhCN_chat_ChatWindow,
-        Assistants: zhCN_chat_Assistants
+        Assistants: zhCN_chat_Assistants,
+        AgentSelector: zhCN_chat_AgentSelector
       }
     }
   },
@@ -249,7 +258,8 @@ const messages = {
           CardFront: enUS_ohCard_CardFront,
           CardBack: enUS_ohCard_CardBack,
           QuestionOption: enUS_ohCard_QuestionOption,
-          FinalStep: enUS_ohCard_FinalStep
+          FinalStep: enUS_ohCard_FinalStep,
+          useOHCard: enUS_ohCard_useOHCard
         },
         OHCardModals: {
           SimpleModal: enUS_ohCard_SimpleModal,
@@ -266,6 +276,11 @@ const messages = {
       womenUnlimited: {
         womenUnlimitedHeroSection: enUS_womenUnlimited_HeroSection,
         womenUnlimitedContentSection: enUS_womenUnlimited_ContentSection
+      },
+      chat: {
+        ChatWindow: enUS_chat_ChatWindow,
+        Assistants: enUS_chat_Assistants,
+        AgentSelector: enUS_chat_AgentSelector
       }
     }
   },
@@ -302,7 +317,8 @@ const messages = {
           CardFront: zhTW_ohCard_CardFront,
           CardBack: zhTW_ohCard_CardBack,
           QuestionOption: zhTW_ohCard_QuestionOption,
-          FinalStep: zhTW_ohCard_FinalStep
+          FinalStep: zhTW_ohCard_FinalStep,
+          useOHCard: zhTW_ohCard_useOHCard
         },
         OHCardModals: {
           SimpleModal: zhTW_ohCard_SimpleModal,
@@ -319,6 +335,11 @@ const messages = {
       womenUnlimited: {
         womenUnlimitedHeroSection: zhTW_womenUnlimited_HeroSection,
         womenUnlimitedContentSection: zhTW_womenUnlimited_ContentSection
+      },
+      chat: {
+        ChatWindow: zhTW_chat_ChatWindow,
+        Assistants: zhTW_chat_Assistants,
+        AgentSelector: zhTW_chat_AgentSelector
       }
     }
   }

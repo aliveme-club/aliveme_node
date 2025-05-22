@@ -4,25 +4,26 @@
 ALiveMe是一个融合AI、心理学与游戏化的社区平台，帮助用户提升自我认知与人际链接。通过AI、心理学和游戏化理念驱动的社区工具，为用户提供智能社群管理、去中心化名片网络和三色能量社区等服务。平台特色包括OH卡互动体验、交换人生桌游体验和无界女性活动等心理健康与成长服务。
 
 ## 当前开发状况
-目前项目已完成了官网前端的Vue重构工作，实现了主要页面和功能组件的开发。下一阶段的开发重点按优先级依次为：
+- 前端：完成Vue 3重构，实现了首页、OH卡、交换人生和无界女性页面，以及聊天系统和国际化框架的基础设置
+- 后端：准备阶段，规划中
+- 数据库：设计阶段，尚未实现
 
-1. **活动推荐页面** - 在前端添加activities.vue页面和相关组件，提升用户体验
-2. **中英文切换功能** - 添加国际化支持，扩大用户群体
+> **注意**：关于前端详细架构和实现，请参阅 [frontend/readme_front.md](frontend/readme_front.md)
+
+## 优先级开发清单
+1. **完善国际化功能** - 完成剩余组件的多语言支持(简体中文、繁体中文、英文)
+2. **活动推荐页面** - 添加activities.vue页面和相关组件
 3. **用户登录和数据管理** - 结合MySQL数据库实现用户认证系统
-
-当前主要集中在前端开发工作，后端和数据库部分将在活动推荐页面完成后进行开发。
 
 ## 技术栈
 ### 前端
-- **框架**: Vue 3 (使用Composition API和`<script setup>`语法)
+- **框架**: Vue 3 (Composition API)
 - **构建工具**: Vite
-- **路由**: Vue Router
-- **状态管理**: Pinia (计划中)
 - **UI组件库**: Element Plus
-- **CSS工具**: Tailwind CSS
-- **HTTP客户端**: Axios
+- **国际化**: Vue I18n
+- **HTTP客户端**: Axios (计划中)
 
-### 后端
+### 后端 (规划中)
 - Node.js
 - Express.js
 - Sequelize
@@ -30,18 +31,17 @@ ALiveMe是一个融合AI、心理学与游戏化的社区平台，帮助用户�
 - bcrypt
 - cors
 
-### 数据库
+### 数据库 (规划中)
 - MySQL 8.0
 
-## 项目结构
+## 项目结构概览
 ```
 aliveme/
 ├── frontend/                # Vue前端项目
 │   ├── src/
-│   │   ├── assets/         # 静态资源
-│   │   │   └── images/     # 图片资源（各种主题图像）
-│   │   │
-│   │   ├── components/     # 公共组件
+│   │   ├── components/     # 组件目录
+│   │   │   ├── chat/       # 聊天组件
+│   │   │   ├── common/     # 通用组件
 │   │   │   ├── home/       # 首页组件
 │   │   │   ├── layout/     # 布局组件
 │   │   │   ├── oh-card/    # OH卡组件
@@ -49,78 +49,70 @@ aliveme/
 │   │   │   └── women-unlimited/ # 无界女性组件
 │   │   │
 │   │   ├── views/          # 页面组件
-│   │   │   ├── Home.vue    # 首页
-│   │   │   ├── OHCard.vue  # OH卡体验页面
-│   │   │   ├── LifeExchange.vue # 交换人生页面
-│   │   │   └── WomenUnlimited.vue # 无界女性页面
-│   │   │
+│   │   ├── i18n/           # 国际化配置和翻译文件
 │   │   ├── router/         # 路由配置
-│   │   ├── store/          # 状态管理
-│   │   ├── api/            # API接口
-│   │   ├── utils/          # 工具函数
 │   │   ├── composables/    # 组合式函数
-│   │   ├── styles/         # 样式文件
-│   │   ├── App.vue         # 根组件
-│   │   └── main.js         # 入口文件
+│   │   └── ...             # 其他目录和文件
 │   │
-│   ├── public/             # 公共资源
-│   └── package.json        # 依赖配置
+│   ├── readme_front.md     # 前端详细文档
+│   └── todo_front.md       # 前端任务清单
 │
-├── backend/                 # Node.js后端项目
-│   ├── src/
-│   │   ├── config/         # 配置文件
-│   │   ├── controllers/    # 控制器
-│   │   ├── models/         # 数据模型
-│   │   ├── routes/         # 路由
-│   │   ├── middlewares/    # 中间件
-│   │   ├── utils/          # 工具函数
-│   │   └── app.js          # 入口文件
-│   └── package.json        # 依赖配置
+├── backend/                 # Node.js后端项目 (规划中)
 │
-└── database/               # 数据库相关
-    ├── migrations/         # 数据库迁移文件
-    └── seeds/              # 种子数据
+└── database/               # 数据库相关 (规划中)
 ```
 
 ## 核心功能模块
 1. **OH卡互动体验** - 融合AI与心理学的卡牌体验游戏
-   - 卡片抽取与翻转
-   - 问题互动
-   - 能量收集
-   - 图片生成与保存
-
 2. **交换人生** - 促进共情能力的桌游体验
-   - 角色转换
-   - 情境模拟
-   - 心理反思
-
 3. **无界女性** - 女性赋能活动平台
-   - 活动介绍
-   - 报名管理
-   - 社群互动
+4. **AI助手系统** - 多类型AI助手提供不同领域的咨询服务
+5. **多语言支持** - 支持简体中文、繁体中文和英文
+6. **活动管理** (开发中) - 活动展示、推荐和报名
+7. **用户系统** (计划中) - 注册/登录、个人信息管理
 
-4. **活动管理** (开发中)
-   - 活动展示
-   - 活动推荐
-   - 活动报名
-   - 活动记录
+## 协作开发说明
+### 前端与后端接口规范
+前端将通过RESTful API与后端通信，接口格式将遵循以下规范：
 
-5. **用户系统** (计划中)
-   - 注册/登录
-   - 个人信息管理
-   - 权限控制
+```
+1. 请求格式: 
+   - GET /api/resource
+   - POST /api/resource
+   - PUT /api/resource/:id
+   - DELETE /api/resource/:id
 
-## 开发原则
-1. **组件化**: 将UI拆分为可复用的组件，提高代码复用率
-2. **单一职责**: 每个组件和函数只负责一种功能
-3. **组合优于继承**: 使用组合式API组合功能
-4. **可测试性**: 逻辑与UI分离，便于测试
-5. **代码量控制**: 单个文件不超过300行，保持代码可读性
+2. 响应格式:
+   {
+     "status": 200,
+     "message": "操作成功",
+     "data": { ... }
+   }
+```
+
+### 预期API接口 (规划中)
+```
+1. 用户管理:
+   - POST /api/users/register
+   - POST /api/users/login
+   - GET /api/users/profile
+   - PUT /api/users/profile
+
+2. 活动管理:
+   - GET /api/activities
+   - GET /api/activities/:id
+   - POST /api/activities/:id/register
+
+3. 社区管理:
+   - GET /api/communities
+   - GET /api/communities/:id
+   - POST /api/communities
+```
 
 ## 开发环境要求
 - Node.js >= 16.0.0
-- MySQL >= 8.0
 - npm >= 7.0.0
+- MySQL >= 8.0 (数据库阶段使用)
 
 ## 安装和运行
 1. 克隆项目
@@ -128,39 +120,33 @@ aliveme/
 git clone [项目地址]
 ```
 
-2. 安装依赖
+2. 前端开发
 ```bash
-# 前端
 cd frontend
 npm install
-
-# 后端
-cd backend
-npm install
+npm run dev
 ```
 
-3. 配置数据库
-- 创建MySQL数据库
-- 配置backend/src/config/database.js
-
-4. 运行项目
+3. 后端开发 (尚未实现)
 ```bash
-# 前端
-cd frontend
-npm run dev
-
-# 后端
 cd backend
+npm install
 npm run dev
 ```
 
 ## 开发规范
-1. 代码规范
+1. **代码风格**
    - 使用ESLint进行代码检查
-   - 遵循Vue 3风格指南
    - 使用Prettier进行代码格式化
+   - 遵循组件化、单一职责原则
 
-2. Git提交规范
+2. **Git工作流**
+   - feature分支: 新功能开发
+   - hotfix分支: 线上问题修复
+   - develop分支: 开发环境
+   - main分支: 生产环境
+
+3. **提交信息规范**
    - feat: 新功能
    - fix: 修复bug
    - docs: 文档更新
@@ -169,22 +155,10 @@ npm run dev
    - test: 测试
    - chore: 构建过程或辅助工具的变动
 
-## 部署
-1. 前端部署
-   - 构建生产环境代码
-   - 配置Nginx
-
-2. 后端部署
-   - 使用PM2进行进程管理
-   - 配置环境变量
-
-## 未来规划
-1. 完成活动推荐页面开发
-2. 添加中英文切换功能
-3. 实现用户登录系统
-4. 引入Pinia进行更全面的状态管理
-5. 集成后端API实现数据持久化
-6. 优化OH卡和交换人生游戏体验
+## 文档列表
+- [前端架构文档](frontend/readme_front.md)
+- [前端任务清单](frontend/todo_front.md)
+- [已完成任务记录](done_task.md)
 
 ## 联系方式
 - 邮箱：sunnyz689@163.com

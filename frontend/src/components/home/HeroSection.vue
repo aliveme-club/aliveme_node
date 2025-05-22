@@ -7,27 +7,27 @@
           <p class="text-xl md:text-2xl mb-6">{{ $t('components.home.HeroSection.title') }}</p>
           <p class="text-lg mb-8">{{ $t('components.home.HeroSection.description') }}</p>
           <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 cta-buttons-custom">
-            <el-button type="primary" size="large" @click="scrollToAbout" class="btn-custom-primary">{{ $t('components.home.HeroSection.actionButton') }}</el-button>
-            <router-link to="/ohCard">
-              <el-button type="success" size="large" class="btn-custom-oh-card">{{ $t('components.home.HeroSection.joinNow') }}</el-button>
-            </router-link>
-            <el-button size="large" @click="scrollToContact" class="btn-custom-outline">{{ $t('components.home.HeroSection.contact') }}</el-button>
+            <div class="cta-row">
+              <el-button type="primary" size="large" @click="scrollToAbout" class="btn-cta">{{ $t('components.home.HeroSection.actionButton') }}</el-button>
+              <router-link to="/ohCard">
+                <el-button type="success" size="large" class="btn-cta">{{ $t('components.home.HeroSection.joinNow') }}</el-button>
+              </router-link>
+              <el-button size="large" @click="scrollToFooter" class="btn-cta">{{ $t('components.home.HeroSection.contact') }}</el-button>
+            </div>
           </div>
         </div>
         <div class="md:w-1/2 fade-in hero-image-custom" style="animation-delay: 0.3s">
-          <div class="flex flex-col space-y-4">
-            <div class="flex space-x-2 mb-4">
-              <el-button 
-                v-for="type in assistantTypes" 
-                :key="type"
-                :type="currentAssistant === type ? 'primary' : 'default'"
-                @click="switchAssistant(type)"
-                class="assistant-button"
-              >
-                {{ prompts[type].title }}
-              </el-button>
-            </div>
-            <ChatWindow :assistant-type="currentAssistant" />
+          <div class="chat-container">
+            <transition name="fade" mode="out-in">
+              <AgentSelector v-if="!currentAgent" @select="handleSelectAgent" />
+              <div v-else class="chat-window-container">
+                <ChatWindow 
+                  :assistantType="currentAgent" 
+                  @update:assistantType="handleUpdateAssistant"
+                  @exit="handleExit"
+                />
+              </div>
+            </transition>
           </div>
         </div>
       </div>
@@ -40,36 +40,63 @@ import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { ref } from 'vue';
 import ChatWindow from '@/components/chat/ChatWindow.vue';
-import prompts from '@/config/prompts.json';
+import AgentSelector from '@/components/chat/AgentSelector.vue';
 
 const router = useRouter();
 const { t } = useI18n();
 
-const assistantTypes = ['activityAssistant', 'travelAssistant', 'foodAssistant'];
-const currentAssistant = ref('activityAssistant');
+const currentAgent = ref(null);
 
-const switchAssistant = (type) => {
-  currentAssistant.value = type;
+const scrollToFooter = () => {
+  const footerElement = document.getElementById('contact-footer');
+  if (footerElement) {
+    footerElement.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+};
+
+const handleMessageSent = () => {
+  // 处理消息发送事件
+};
+
+const handleSelectAgent = (type) => {
+  // 添加一个小延迟使动画效果更明显
+  setTimeout(() => {
+    currentAgent.value = type;
+  }, 100);
+};
+
+const handleUpdateAssistant = (type) => {
+  currentAgent.value = type;
+};
+
+const handleExit = () => {
+  currentAgent.value = null;
 };
 
 const scrollToAbout = () => {
-  document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+  const aboutSection = document.getElementById('about');
+  if (aboutSection) {
+    aboutSection.scrollIntoView({ behavior: 'smooth' });
+  }
 };
 
 const scrollToContact = () => {
-  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-};
-
-const goToOhCard = () => {
-  router.push('/oh-card');
+  const contactSection = document.getElementById('contact');
+  if (contactSection) {
+    contactSection.scrollIntoView({ behavior: 'smooth' });
+  }
 };
 </script>
 
 <style scoped>
 /* Styles adapted from main.html and HeroSection.vue original styles */
 .hero-section {
-  height: 550px; /* Unified height */
-  overflow: hidden; /* Prevent content overflow */
+  min-height: 550px;
+  height: auto;
+  overflow: visible;
   background: linear-gradient(to right, #56C271, #4A90E2); /* Standardized gradient */
   color: white;
   padding: 80px 0; /* Standardized padding */
@@ -84,8 +111,7 @@ const goToOhCard = () => {
 /* 聊天窗口样式 */
 .chat-window {
   width: 100%;
-  max-width: 400px;
-  height: 400px;
+  max-width: 540px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -311,6 +337,7 @@ const goToOhCard = () => {
 .hero-image-custom {
   display: flex;
   justify-content: center;
+  padding: 10px;
 }
 
 .main-image-custom {
@@ -414,5 +441,94 @@ const goToOhCard = () => {
   .md\:text-2xl {
     font-size: 1.5rem; /* 24px */
   }
+}
+
+@media (max-width: 640px) {
+  .hero-section {
+    height: auto;
+    min-height: 0;
+    padding: 24px 0 12px 0;
+    align-items: flex-start;
+  }
+  .cta-row {
+    gap: 6px;
+  }
+  .btn-cta.el-button {
+    font-size: 0.95rem;
+    padding: 0.6rem 0.2rem;
+    min-width: 0;
+    max-width: 33vw;
+  }
+  .hero-image-custom {
+    width: 100%;
+    padding: 0;
+  }
+  .chat-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+}
+
+.cta-row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn-cta.el-button {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 160px;
+  font-size: 1rem;
+  border-radius: 9999px;
+  padding: 0.75rem 0.5rem;
+  margin: 0;
+  white-space: nowrap;
+  box-shadow: none;
+  border: 2px solid #fff;
+  background-color: #fff !important;
+  color: var(--primary-color, #4A90E2) !important;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-cta.el-button:hover {
+  background-color: #f3f4f6 !important;
+  color: #4A90E2 !important;
+}
+.btn-cta.el-button--success {
+  background-color: #10b981 !important;
+  color: #fff !important;
+  border-color: #10b981 !important;
+}
+.btn-cta.el-button--success:hover {
+  background-color: #059669 !important;
+}
+
+.chat-container {  
+  position: relative;  
+  width: 100%;  
+  max-width: 540px;  
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+  
+.chat-window-container {
+  position: relative;
+  width: 100%;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
 }
 </style> 

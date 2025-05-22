@@ -123,28 +123,7 @@ const cardFrontRef = ref(null)
 const cardBackRef = ref(null)
 
 const onCardClick = () => {
-  console.log('[OH卡] 点击卡片，触发预览')
-  console.log('[OH卡] 卡片元素:', {
-    cardContainer: document.querySelector('.card-container') ? '存在' : '不存在',
-    cardFrontRef: cardFrontRef.value ? '存在' : '不存在',
-    cardBackRef: cardBackRef.value ? '存在' : '不存在'
-  })
   emit('card-click')
-  
-  // 检查事件后的模态框状态
-  setTimeout(() => {
-    const modalElement = document.querySelector('.image-preview-modal')
-    console.log('[OH卡] 点击后模态框状态:', modalElement ? '存在' : '不存在')
-    
-    if (modalElement) {
-      console.log('[OH卡] 模态框样式:', {
-        display: window.getComputedStyle(modalElement).display,
-        visibility: window.getComputedStyle(modalElement).visibility,
-        opacity: window.getComputedStyle(modalElement).opacity,
-        zIndex: window.getComputedStyle(modalElement).zIndex
-      })
-    }
-  }, 500)
 }
 
 const onRedraw = () => {

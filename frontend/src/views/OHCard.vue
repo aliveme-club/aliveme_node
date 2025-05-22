@@ -27,10 +27,10 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue'
-import OHCardHero from '@/components/ohCard/OHCardHero.vue'
+import OHCardHero from '@/components/ohCard/OHCardGame/OHCardHero.vue'
 import OHCardGame from '@/components/ohCard/OHCardGame/index.vue'
-import OHCardProcess from '@/components/ohCard/OHCardProcess.vue'
-import OHCardIntroduction from '@/components/ohCard/OHCardIntroduction.vue'
+import OHCardProcess from '@/components/ohCard/OHCardGame/OHCardProcess.vue'
+import OHCardIntroduction from '@/components/ohCard/OHCardGame/OHCardIntroduction.vue'
 import RedrawConfirmation from '@/components/ohCard/OHCardModals/RedrawConfirmation.vue'
 import useOHCard from '@/composables/useOHCard'
 
@@ -53,39 +53,30 @@ const {
 
 // 监控模态框状态变化
 watch(() => showImagePreviewModal.value, (value) => {
-  console.log('[OHCard.vue] showImagePreviewModal变化:', value)
+  // 模态框状态变化
 })
 
 // 滚动到OH卡游戏区域
 const scrollToOhCardGame = () => {
-  console.log('[OH卡] 滚动到游戏区域')
-  
   // 确保组件已加载
   setTimeout(() => {
     if (ohCardGameRef.value) {
       const container = ohCardGameRef.value.ohCardMiniContainer
       if (container) {
-        console.log('[OH卡] 找到游戏容器元素')
         container.scrollIntoView({ behavior: 'smooth' })
         
         // 添加高亮效果
         container.classList.add('highlight')
-    setTimeout(() => {
+        setTimeout(() => {
           container.classList.remove('highlight')
         }, 1000)
-  } else {
-        console.error('[OH卡] 未找到游戏容器元素')
       }
-    } else {
-      console.error('[OH卡] 未找到游戏组件引用')
     }
-    }, 100)
+  }, 100)
 }
 
 // 在mounted时检查初始状态
 onMounted(() => {
-  console.log('[OHCard.vue] 初始showImagePreviewModal值:', showImagePreviewModal.value)
-  
   // 监听滚动，添加动画
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -98,8 +89,6 @@ onMounted(() => {
   document.querySelectorAll('.fade-in').forEach(el => {
     observer.observe(el)
   })
-  
-  console.log('[OH卡] 页面已加载')
 })
 </script>
 

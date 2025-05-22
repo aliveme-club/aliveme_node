@@ -1,52 +1,22 @@
 import { ref, reactive, computed, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 /**
  * OH卡游戏逻辑和状态管理
  * @returns {Object} OH卡游戏状态和方法
  */
 export default function useOHCard() {
-  // 静态数据
-  const steps = [
-    {
-      title: '确定心中的卡点',
-      description: '思考你最近遇到的困惑或问题'
-    },
-    {
-      title: '凝聚宇宙能量',
-      description: '抽取你的OH卡'
-    },
-    {
-      title: '问题引导',
-      description: '让自己代入图片中'
-    },
-    {
-      title: '寻找启发',
-      description: '从图片与问题中找到解决卡点的启发'
-    },
-    {
-      title: '完成体验',
-      description: '拿走你的纪念卡'
-    }
-  ]
-
-  // 问题池
-  const questionPools = [
-    [
-      "看到了什么？感受如何？",
-      "抽到的卡牌与你最近发生的事或感受相关吗？",
-      "你说卡牌中的两个主角，他们是什么关系？"
-    ],
-    [
-      "我很好奇，你为什么会这样描述它？",
-      "你注意到的这个细节，你觉得它是什么？从哪里来的？",
-      "你觉得这个人在做什么？ta做这件事有什么感受？"
-    ],
-    [
-      "卡中人物处在什么环境中？环境对ta有什么影响？",
-      "你在这个卡牌中吗？你是里面的谁？在做什么？感受如何？",
-      "你的故事里，主角遭遇的事情，ta可以怎么解决？"
-    ]
-  ]
+  const { t } = useI18n()
+  
+  // 静态数据从i18n获取
+  const steps = computed(() => {
+    return t('components.ohCard.OHCardGame.useOHCard.steps')
+  })
+  
+  // 问题池也从i18n获取
+  const questionPools = computed(() => {
+    return t('components.ohCard.OHCardGame.useOHCard.questionPools')
+  })
 
   // 响应式状态
   const currentStep = ref(1)
@@ -74,7 +44,7 @@ export default function useOHCard() {
   const cardBackImgElement = ref(null)
 
   // 计算属性
-  const currentQuestions = computed(() => questionPools[currentRound.value])
+  const currentQuestions = computed(() => questionPools.value[currentRound.value])
 
   // 调试相关状态
   const showDebug = ref(false)
@@ -194,7 +164,7 @@ export default function useOHCard() {
             // 4. 显示第一轮问题
             currentRound.value = 0
             console.log('[OH卡] 设置当前问题轮次为:', currentRound.value)
-            console.log('[OH卡] 当前问题:', questionPools[currentRound.value])
+            console.log('[OH卡] 当前问题:', questionPools.value[currentRound.value])
             
             // 验证问题选项是否显示
             setTimeout(() => {
@@ -236,7 +206,7 @@ export default function useOHCard() {
         currentRound.value++
         // 进入新轮次时清空选中索引
         selectedQuestionIndices.value = []
-        console.log('[OH卡] 已清空选中索引，当前轮次问题:', questionPools[currentRound.value])
+        console.log('[OH卡] 已清空选中索引，当前轮次问题:', questionPools.value[currentRound.value])
       } else {
         // 完成所有问题
         console.log('[OH卡] 已回答完所有轮次的问题，进入完成阶段')
@@ -304,7 +274,7 @@ export default function useOHCard() {
 
       // 添加标题
       ctx.font = 'bold 28px Arial';
-      ctx.fillText('我的OH卡问题', canvas.width / 2, 80);
+      ctx.fillText(t('components.ohCard.OHCardGame.useOHCard.questionsTitle'), canvas.width / 2, 80);
 
       // 计算每个问题所需的垂直空间
       const availableHeight = canvas.height - 150; // 去除顶部和底部的空间
@@ -347,7 +317,7 @@ export default function useOHCard() {
 
         // 绘制问题序号
         ctx.font = 'bold 20px Arial';
-        ctx.fillText(`问题 ${index + 1}:`, canvas.width / 2, startY);
+        ctx.fillText(`${t('components.ohCard.OHCardGame.useOHCard.questionPrefix')}${index + 1}:`, canvas.width / 2, startY);
         
         // 恢复问题字体
         ctx.font = `${fontSize}px Arial`;
@@ -370,7 +340,7 @@ export default function useOHCard() {
       // 添加水印
       ctx.font = '14px Arial';
       ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-      ctx.fillText('ALiveMe OH卡', canvas.width / 2, canvas.height - 20);
+      ctx.fillText(t('components.ohCard.OHCardGame.useOHCard.watermark'), canvas.width / 2, canvas.height - 20);
 
       // 将Canvas转换为图片URL
       cardBackImageSrc.value = canvas.toDataURL('image/png');
@@ -411,7 +381,7 @@ export default function useOHCard() {
 
       // 添加标题
       ctx.font = 'bold 28px Arial';
-      ctx.fillText('我的OH卡问题', canvas.width / 2, 80);
+      ctx.fillText(t('components.ohCard.OHCardGame.useOHCard.questionsTitle'), canvas.width / 2, 80);
 
       // 计算每个问题所需的垂直空间
       const availableHeight = canvas.height - 150; // 去除顶部和底部的空间
@@ -454,7 +424,7 @@ export default function useOHCard() {
 
         // 绘制问题序号
         ctx.font = 'bold 20px Arial';
-        ctx.fillText(`问题 ${index + 1}:`, canvas.width / 2, startY);
+        ctx.fillText(`${t('components.ohCard.OHCardGame.useOHCard.questionPrefix')}${index + 1}:`, canvas.width / 2, startY);
         
         // 恢复问题字体
         ctx.font = `${fontSize}px Arial`;
@@ -475,7 +445,7 @@ export default function useOHCard() {
       // 添加水印
       ctx.font = '14px Arial';
       ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-      ctx.fillText('ALiveMe OH卡', canvas.width / 2, canvas.height - 20);
+      ctx.fillText(t('components.ohCard.OHCardGame.useOHCard.watermark'), canvas.width / 2, canvas.height - 20);
 
       // 将Canvas转换为图片URL
       cardBackImageSrc.value = canvas.toDataURL('image/png');
@@ -533,7 +503,7 @@ export default function useOHCard() {
     }, 100)
   }
 
-  // 使用原生DOM直接创建预览
+  // 创建直接预览时使用国际化文本
   const createDirectPreview = () => {
     // 移除可能存在的之前的预览
     const existingPreview = document.getElementById('direct-preview-modal')
@@ -737,7 +707,7 @@ export default function useOHCard() {
     
     // 提示文本
     const hint = document.createElement('div')
-    hint.textContent = '点击卡片可放大/缩小查看'
+    hint.textContent = t('components.ohCard.OHCardGame.useOHCard.cardPreviewHint')
     hint.style.color = 'white'
     hint.style.fontSize = '14px'
     hint.style.opacity = '0.7'
@@ -848,7 +818,7 @@ export default function useOHCard() {
     ctx.fillStyle = '#333';
     ctx.font = 'bold 24px Arial';
     ctx.textAlign = 'center';
-    ctx.fillText('我的OH卡', canvas.width / 2, 40);
+    ctx.fillText(t('components.ohCard.OHCardGame.useOHCard.cardTitle'), canvas.width / 2, 40);
 
     // 加载正面和背面图片
     const frontImg = new Image();
@@ -889,8 +859,8 @@ export default function useOHCard() {
         // 绘制标签
         ctx.fillStyle = '#333';
         ctx.font = 'bold 18px Arial';
-        ctx.fillText("正面", x1 + cardWidth / 2, 60);
-        ctx.fillText("背面", x2 + cardWidth / 2, 60);
+        ctx.fillText(t('components.ohCard.OHCardGame.useOHCard.cardFrontTitle'), x1 + cardWidth / 2, 60);
+        ctx.fillText(t('components.ohCard.OHCardGame.useOHCard.cardBackTitle'), x2 + cardWidth / 2, 60);
         
         // 计算图片绘制尺寸，保持原始比例
         const calcImageDimensions = (img, containerWidth, containerHeight) => {
@@ -939,12 +909,12 @@ export default function useOHCard() {
         // 添加水印
         ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
         ctx.font = '14px Arial';
-        ctx.fillText('ALiveMe OH卡 - ' + new Date().toLocaleDateString(), canvas.width / 2, canvas.height - 15);
+        ctx.fillText(t('components.ohCard.OHCardGame.useOHCard.watermarkWithDate') + new Date().toLocaleDateString(), canvas.width / 2, canvas.height - 15);
         
         // 转换为数据URL并触发下载
         const dataUrl = canvas.toDataURL('image/png');
         const link = document.createElement('a');
-        link.download = 'my-oh-card.png';
+        link.download = t('components.ohCard.OHCardGame.useOHCard.downloadFilename');
         link.href = dataUrl;
         link.click();
       }
@@ -977,33 +947,27 @@ export default function useOHCard() {
 
   // 图片错误处理函数
   const handleCardImageError = (e) => {
-    console.error('[OH卡] 卡片图像加载失败:', e)
     cardImageError.value = true
   }
 
   const handleCardBackImageError = (e) => {
-    console.error('[OH卡] 卡片背面图像加载失败:', e)
     cardBackImageError.value = true
   }
 
   const handleCardBackPreviewError = (e) => {
-    console.error('[OH卡] 卡片背面预览图像加载失败:', e)
     cardBackPreviewError.value = true
   }
 
   // 调试辅助函数
   const toggleDebug = () => {
     showDebug.value = !showDebug.value
-    console.log('[OH卡调试] 调试面板', showDebug.value ? '已显示' : '已隐藏')
   }
 
   const forceNextStep = () => {
     currentStep.value = (currentStep.value % 3) + 1
-    console.log('[OH卡调试] 强制切换到步骤', currentStep.value)
   }
 
   const forceCardDraw = () => {
-    console.log('[OH卡调试] 强制抽卡')
     // 使用固定的卡片编号以确保稳定性
     currentCardNumber.value = 11
     cardImageSrc.value = './assets/images/material/oh/cards/back.png'
@@ -1015,16 +979,15 @@ export default function useOHCard() {
           cardImageSrc.value = `./assets/images/material/oh/cards/${currentCardNumber.value}.png`
           currentRound.value = 0
         } catch (err) {
-          console.error('[OH卡调试] 强制抽卡出错:', err)
-          // 使用备用图片
-          cardImageSrc.value = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjIwIiBoZWlnaHQ9IjMzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjIwIiBoZWlnaHQ9IjMzMCIgZmlsbD0iIzJjM2U1MCIvPjx0ZXh0IHg9IjExMCIgeT0iMTY1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIj5PSOWNoeWbvueJh+acqui/m+W8guWPkTwvdGV4dD48L3N2Zz4='
+          // 使用备用图片 - 使用国际化文本
+          const fallbackText = t('components.ohCard.OHCardGame.useOHCard.fallbackSvgText')
+          cardImageSrc.value = `data:image/svg+xml;base64,${btoa(`<svg width="220" height="330" xmlns="http://www.w3.org/2000/svg"><rect width="220" height="330" fill="#2c3e50"/><text x="110" y="165" font-family="Arial" font-size="24" text-anchor="middle" fill="white">${fallbackText}</text></svg>`)}`
         }
       }, 800)
     }, 500)
   }
 
   const checkImagePaths = () => {
-    console.log('[OH卡调试] 检查图片路径')
     const basePath = './assets/images/material/oh/cards/'
     const paths = []
     
@@ -1033,28 +996,19 @@ export default function useOHCard() {
         const path = new URL(`${basePath}${i}.png`, import.meta.url).href
         paths.push({ num: i, path })
       } catch (err) {
-        console.error(`[OH卡调试] 卡片 ${i} 路径错误:`, err)
+        // 忽略错误
       }
     }
-    
-    console.table(paths)
   }
 
   // 生命周期钩子
   onMounted(() => {
-    // 初始化日志
-    console.log('[OH卡] 组件已加载')
-    console.log('[OH卡] 当前步骤:', currentStep.value)
-    console.log('[OH卡] 卡片背面图片路径:', './assets/images/material/oh/cards/back.png')
-    
     // 验证资源路径
     try {
       const testImage = new Image()
-      testImage.onload = () => console.log('[OH卡] 卡背图片加载成功')
-      testImage.onerror = (err) => console.error('[OH卡] 卡背图片加载失败:', err)
       testImage.src = './assets/images/material/oh/cards/back.png'
     } catch (error) {
-      console.error('[OH卡] 资源路径测试失败:', error)
+      // 忽略错误
     }
   })
 

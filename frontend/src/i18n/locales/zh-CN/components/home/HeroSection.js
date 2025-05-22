@@ -4,5 +4,5 @@ export default {
   description: '帮助您提升自我认知与人际链接',
   actionButton: '了解更多',
   contact:'联系我们',
-  joinNow:'加入我们'
+  joinNow:'抽取OH卡'
 } 
