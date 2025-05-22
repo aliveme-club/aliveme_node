@@ -1,0 +1,5 @@
+export default {
+  title: 'Development History',
+  subtitle: 'Our Growth Journey',
+  timelineItems: [{"date": "December 13, 2024", "description": "The \"Exchange of Lives\" scripted board game was born within 40 hours, completing the initial design for a tabletop game that creates connections for users."}, {"date": "December 15, 2024", "description": "The first trial of the \"Exchange Life\" board game script received positive feedback from participants."}, {"date": "January 20, 2025", "description": "Beterme has been renamed ALiveme to establish a new brand positioning and development direction."}, {"date": "February 1, 2025", "description": "The idea for the ALiveme community was born, establishing a community construction plan centered on AI and psychology."}, {"date": "February 4, 2025", "description": "AI+Psychology's first core team meeting, establishing product development roadmap and technical framework."}, {"date": "May 24, 2025", "description": "ALiveMe product launch event and Shanghai Women's Boundless Conference."}],
+}

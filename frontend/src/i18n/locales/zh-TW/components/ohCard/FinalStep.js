@@ -1,0 +1,32 @@
+export default {
+  title: '恭喜完成了OH卡體驗！',
+  subtitle: '感謝您完成OH卡體驗',
+  description: '你可以點擊卡片放大查看，或保存卡片作爲紀念。',
+  saveButton: '保存卡片',
+  flipButton: '卡片翻面',
+  restartButton: '再次體驗',
+  tip: '點擊卡片可以放大查看',
+  summary:  {
+    title: '您的體驗總結',
+    cardDrawn: '抽取的卡片',
+    theme: '主題',
+    question: '思考問題',
+    answer: '您的回答',
+    insight: '洞察',
+  },
+  feedback:  {
+    title: '您的反饋',
+    question: '這次體驗對您有幫助嗎？',
+    placeholder: '請分享您的想法和建議（可選）',
+    submit: '提交反饋',
+  },
+  actions:  {
+    restart: '重新體驗',
+    share: '分享結果',
+    explore: '探索更多卡片',
+    home: '返回首頁',
+  },
+  shareText: '我在ALiveMe完成了一次OH卡體驗，獲得了一些有趣的洞察！',
+  thankYou: '感謝您的參與！',
+  continueJourney: '您的心靈探索之旅才剛剛開始',
+}

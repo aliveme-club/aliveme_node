@@ -1,0 +1,32 @@
+export default {
+  title: 'Congratulations on completing the OH Card experience!',
+  description: 'You can click on the card to zoom in for a closer view, or save the card as a keepsake.',
+  saveButton: 'Save Card',
+  flipButton: 'Card Flip',
+  restartButton: 'Re-experience',
+  tip: 'Click the card to zoom in and view',
+  subtitle: 'Thank you for completing the OH Card experience.',
+  summary:  {
+    title: 'Your Experience Summary',
+    cardDrawn: 'Extracted Card',
+    theme: 'Theme',
+    question: 'Contemplate issues',
+    answer: 'Your reply',
+    insight: 'Insight',
+  },
+  feedback:  {
+    title: 'Your Feedback',
+    question: 'How was your experience this time?',
+    placeholder: 'Please share your ideas and suggestions (optional)',
+    submit: 'Submit Feedback',
+  },
+  actions:  {
+    restart: 'Rediscover',
+    share: 'Share Results',
+    explore: 'Explore More Cards',
+    home: 'Return to Home Page',
+  },
+  shareText: 'I had an OH Card experience on ALiveMe and gained some interesting insights!',
+  thankYou: 'Thank you for your participation!',
+  continueJourney: 'Your spiritual exploration journey has just begun.',
+}

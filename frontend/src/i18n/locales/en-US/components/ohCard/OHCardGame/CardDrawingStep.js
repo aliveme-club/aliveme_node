@@ -1,0 +1,50 @@
+export default {
+  title: 'Your OH Cards',
+  subtitle: 'Let\'s see what today\'s card has to tell you',
+  instructions:  {
+    draw: 'Click the button below to draw a card',
+    flip: 'Click to flip the card',
+    answer: 'Contemplate the question and select your answer',
+  },
+  buttons:  {
+    draw: 'Draw Card',
+    redraw: 'Re-draw',
+    flip: 'Flip Card',
+    continue: 'Continue',
+    back: 'Go back',
+  },
+  cardStates:  {
+    drawing: 'Drawing cards...',
+    drawn: 'Card has been drawn',
+    flipping: 'Flipping...',
+    flipped: 'Card has been flipped',
+  },
+  questionTypes:  {
+    singleChoice: 'Single-choice Question',
+    multiChoice: 'Multiple Choice Questions',
+    openEnded: 'Open-ended question',
+  },
+  questionPrompt: 'Please consider the following questions:',
+  answerPrompt: 'Please select your answer:',
+  textAnswerPlaceholder: 'Please enter your thoughts...',
+  analysis:  {
+    title: 'Analysis Results',
+    loading: 'Analyzing your response...',
+    insight: 'Insight',
+    suggestion: 'Suggestion',
+  },
+  confirmRedraw:  {
+    title: 'Confirm to redraw',
+    message: 'Are you sure you want to draw a new card? The current progress will be lost.',
+    confirm: 'Confirm',
+    cancel: 'Cancel',
+  },
+  shareCard:  {
+    title: 'Share Card',
+    description: 'Share this card with friends',
+    copied: 'Link has been copied',
+    download: 'Download Image',
+  },
+  redrawButton: 'I want to reshuffle',
+  promptTitle: 'Viewing this card, you can:',
+}
