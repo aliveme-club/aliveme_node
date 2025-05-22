@@ -147,6 +147,15 @@ import zhCN_womenUnlimited_ContentSection from './locales/zh-CN/components/women
 import enUS_womenUnlimited_ContentSection from './locales/en-US/components/womenUnlimited/WomenUnlimitedContentSection.js'
 import zhTW_womenUnlimited_ContentSection from './locales/zh-TW/components/womenUnlimited/WomenUnlimitedContentSection.js'
 
+// 导入聊天组件翻译
+import zhCN_chat_ChatWindow from './locales/zh-CN/components/chat/ChatWindow.js'
+import enUS_chat_ChatWindow from './locales/en-US/components/chat/ChatWindow.js'
+import zhTW_chat_ChatWindow from './locales/zh-TW/components/chat/ChatWindow.js'
+
+import zhCN_chat_Assistants from './locales/zh-CN/components/chat/Assistants.js'
+import enUS_chat_Assistants from './locales/en-US/components/chat/Assistants.js'
+import zhTW_chat_Assistants from './locales/zh-TW/components/chat/Assistants.js'
+
 
 // 创建消息对象
 const messages = {
@@ -200,6 +209,10 @@ const messages = {
       womenUnlimited: {
         womenUnlimitedHeroSection: zhCN_womenUnlimited_HeroSection,
         womenUnlimitedContentSection: zhCN_womenUnlimited_ContentSection
+      },
+      chat: {
+        ChatWindow: zhCN_chat_ChatWindow,
+        Assistants: zhCN_chat_Assistants
       }
     }
   },

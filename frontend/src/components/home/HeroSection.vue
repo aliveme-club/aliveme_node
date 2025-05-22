@@ -15,30 +15,19 @@
           </div>
         </div>
         <div class="md:w-1/2 fade-in hero-image-custom" style="animation-delay: 0.3s">
-          <div class="chat-window rounded-lg shadow-xl mx-auto">
-            <div class="chat-header">
-              <div class="chat-title">活动推荐 AI 小助手</div>
-            </div>
-            <div class="chat-messages" ref="messagesContainer">
-              <div v-for="(message, index) in messages" :key="index" 
-                   class="message" 
-                   :class="message.sender">
-                <div class="message-bubble">{{ message.content }}</div>
-                <div class="message-time">{{ message.time }}</div>
-              </div>
-            </div>
-            <div class="chat-input">
-              <input 
-                type="text" 
-                v-model="userInput" 
-                @keyup.enter="sendMessage"
-                placeholder="输入你想说的话..."
-                class="message-input"
+          <div class="flex flex-col space-y-4">
+            <div class="flex space-x-2 mb-4">
+              <el-button 
+                v-for="type in assistantTypes" 
+                :key="type"
+                :type="currentAssistant === type ? 'primary' : 'default'"
+                @click="switchAssistant(type)"
+                class="assistant-button"
               >
-              <button @click="sendMessage" class="send-button">
-                <i class="fas fa-paper-plane"></i>
-              </button>
+                {{ prompts[type].title }}
+              </el-button>
             </div>
+            <ChatWindow :assistant-type="currentAssistant" />
           </div>
         </div>
       </div>
@@ -49,205 +38,18 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
-import { ref, nextTick } from 'vue';
-import heroImageUrl from '@/assets/images/team/sunnyonthe38meeting.jpg';
+import { ref } from 'vue';
+import ChatWindow from '@/components/chat/ChatWindow.vue';
+import prompts from '@/config/prompts.json';
 
 const router = useRouter();
 const { t } = useI18n();
-const userInput = ref('');
-const messagesContainer = ref(null);
 
-// API Configuration from environment variables
-const OPENAI_BASE_URL = import.meta.env.VITE_OPENAI_BASE_URL;
-const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
-const OPENAI_MODEL = import.meta.env.VITE_OPENAI_MODEL || 'deepseek-chat'; // Default if not set
-const SYSTEM_PROMPT = '你是我的活动推荐助手，请根据我的需求推荐活动。请只使用中文回答。';
-const MAX_CONVERSATION_HISTORY_ROUNDS = 3; // 记录的用户会话轮数
+const assistantTypes = ['activityAssistant', 'travelAssistant', 'foodAssistant'];
+const currentAssistant = ref('activityAssistant');
 
-// 初始化消息列表
-const messages = ref([
-  {
-    content: '你好，我是你的活动推荐小助手~请说出你的需求',
-    sender: 'assistant',
-    time: formatTime(new Date())
-  }
-]);
-
-// 格式化时间
-function formatTime(date) {
-  const hours = date.getHours().toString().padStart(2, '0');
-  const minutes = date.getMinutes().toString().padStart(2, '0');
-  return `${hours}:${minutes}`;
-}
-
-// 滚动聊天窗口到底部
-const scrollChatToBottom = async () => {
-  // Ensure DOM is updated before scrolling
-  await nextTick();
-  if (messagesContainer.value) {
-    messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight;
-  }
-};
-
-// 发送消息
-const sendMessage = async () => {
-  if (!userInput.value.trim()) return;
-  console.log(`[用户输入] ${userInput.value}`);
-
-  // 添加用户消息
-  messages.value.push({
-    content: userInput.value,
-    sender: 'user',
-    time: formatTime(new Date())
-  });
-  
-  const currentUserMessage = userInput.value;
-  userInput.value = ''; // 清空输入框
-  
-  await scrollChatToBottom(); // Scroll after adding user message and clearing input
-
-  // 准备发送给API的消息
-  const constructApiMessages = () => {
-    const history = messages.value.map(msg => ({
-      role: msg.sender === 'user' ? 'user' : (msg.sender === 'assistant' ? 'assistant' : 'system'),
-      content: msg.content
-    }));
-
-    // 保留最近的 MAX_CONVERSATION_HISTORY_ROUNDS * 2 条消息 (用户 + AI)
-    // +1 for the current user message that was just added but not yet part of 'history' if we sliced before pushing
-    const relevantHistory = messages.value.slice(-(MAX_CONVERSATION_HISTORY_ROUNDS * 2 + 1));
-
-
-    return [
-      { role: 'system', content: SYSTEM_PROMPT },
-      ...relevantHistory.map(msg => ({ // Map again to ensure correct role
-          role: msg.sender === 'user' ? 'user' : 'assistant',
-          content: msg.content
-      }))
-    ];
-  };
-
-  const apiMessages = constructApiMessages();
-  console.log('[API请求体构造完成]', JSON.stringify(apiMessages, null, 2));
-
-  if (!OPENAI_BASE_URL || !OPENAI_API_KEY || !OPENAI_MODEL) {
-    console.error('[API配置错误] VITE_OPENAI_BASE_URL, VITE_OPENAI_API_KEY, and VITE_OPENAI_MODEL 必须在 .env 文件中设置。');
-    messages.value.push({
-      content: '抱歉，AI助手未正确配置，请检查环境变量设置并联系管理员。',
-      sender: 'assistant',
-      time: formatTime(new Date())
-    });
-    await scrollChatToBottom();
-    return;
-  }
-  
-  try {
-    console.log(`[调用API] URL: ${OPENAI_BASE_URL}/v1/chat/completions, Model: ${OPENAI_MODEL}`);
-    const response = await fetch(`${OPENAI_BASE_URL}/v1/chat/completions`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: OPENAI_MODEL,
-        messages: apiMessages,
-        stream: true, // 启用流式响应
-      })
-    });
-
-    if (!response.ok) {
-      // Attempt to read error body for more details
-      let errorDetails = response.statusText;
-      try {
-        const errorData = await response.json();
-        errorDetails = errorData.error?.message || errorData.message || JSON.stringify(errorData);
-        console.error('[API响应错误主体]', errorData);
-      } catch (e) {
-        console.error('[API响应错误] 无法解析错误JSON主体', e);
-      }
-      console.error('[API响应错误]', response.status, errorDetails);
-      throw new Error(`HTTP error! status: ${response.status}, message: ${errorDetails}`);
-    }
-
-    // 处理流式响应
-    if (!response.body) {
-      throw new Error('Response body is null');
-    }
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder('utf-8');
-    let accumulatedContent = '';
-
-    // 为助手消息添加一个占位符，稍后填充内容
-    const assistantMessageId = messages.value.length;
-    messages.value.push({
-      content: '', // 初始为空，逐步填充
-      sender: 'assistant',
-      time: formatTime(new Date())
-    });
-    await scrollChatToBottom();
-
-    let parsingBuffer = '';
-
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) {
-        console.log('[流结束]');
-        break;
-      }
-      
-      parsingBuffer += decoder.decode(value, { stream: true });
-      
-      // 按行处理SSE数据
-      let newlineIndex;
-      while ((newlineIndex = parsingBuffer.indexOf('\n')) >= 0) {
-        const line = parsingBuffer.substring(0, newlineIndex).trim();
-        parsingBuffer = parsingBuffer.substring(newlineIndex + 1);
-
-        if (line.startsWith('data: ')) {
-          const jsonStr = line.substring(5).trim();
-          if (jsonStr === '[DONE]') {
-            console.log('[流处理完成信号]');
-            // [DONE] 标记表示结束，可以提前退出循环，但通常依赖于reader.read()的done状态
-            // 确保最终的scrollChatToBottom被调用
-          } else {
-            try {
-              const parsed = JSON.parse(jsonStr);
-              if (parsed.choices && parsed.choices[0] && parsed.choices[0].delta) {
-                const contentChunk = parsed.choices[0].delta.content;
-                if (contentChunk) {
-                  accumulatedContent += contentChunk;
-                  messages.value[assistantMessageId].content = accumulatedContent;
-                  // 频繁滚动可能会影响性能，可以考虑节流或仅在必要时滚动
-                  // 但对于聊天应用，通常期望实时滚动
-                  await scrollChatToBottom(); 
-                }
-                if (parsed.choices[0].finish_reason) {
-                  console.log('[流完成原因]', parsed.choices[0].finish_reason);
-                  // finish_reason也表示流的结束
-                  // 可以在这里处理额外的逻辑，例如保存完整的消息等
-                }
-              }
-            } catch (e) {
-              console.error('[流数据解析错误]', e, '原始数据:', jsonStr);
-            }
-          }
-        }
-      }
-    }
-    // 确保最后一次解码缓冲区中剩余的内容（如果有的话，尽管在SSE中不常见）
-    // 对于SSE，通常是以换行符分隔的，所以上面的循环应该处理完所有数据
-
-  } catch (error) {
-    console.error('[调用LLM API或处理流失败]', error);
-    messages.value.push({
-      content: `抱歉，与AI助手通信时发生错误: ${error.message}`,
-      sender: 'assistant',
-      time: formatTime(new Date())
-    });
-  } finally {
-    await scrollChatToBottom();
-  }
+const switchAssistant = (type) => {
+  currentAssistant.value = type;
 };
 
 const scrollToAbout = () => {
@@ -555,6 +357,13 @@ const goToOhCard = () => {
 .btn-custom-outline.el-button:hover {
   background-color: white !important;
   color: var(--primary-color, #4A90E2) !important;
+}
+
+.assistant-button {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .fade-in {

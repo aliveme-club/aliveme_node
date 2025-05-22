@@ -14,14 +14,15 @@ src/i18n/
     │   │   ├── layout/      # 布局组件
     │   │   ├── oh-card/     # OH卡组件
     │   │   ├── life-exchange/# 交换人生组件
-    │   │   └── women-unlimited/# 无界女性组件
+    │   │   ├── women-unlimited/# 无界女性组件
+    │   │   └── chat/        # 聊天组件
     │   ├── views/           # 页面翻译
     │   │   ├── home.js      # 首页
     │   │   ├── ohcard.js    # OH卡页面
     │   │   ├── lifeexchange.js# 交换人生页面
     │   │   └── womenunlimited.js# 无界女性页面
     │   └── common.js        # 通用翻译
-    │   └── appfooter.js        # 脚注翻译
+    │   └── appfooter.js     # 脚注翻译
     ├── en-US/               # 英文(结构同简体中文)
     └── zh-TW/               # 繁体中文(结构同简体中文)
 ```
@@ -72,10 +73,67 @@ export default {
 
 ### 3. 翻译流程
 
-1. 先完成中文(zh-CN)版本的文本提取
-2. 基于中文版本创建英文(en-US)和繁体中文(zh-TW)的翻译文件
-3. 进行翻译工作
-4. 在组件中使用`$t`函数引用翻译文本
+#### 3.1 对已有界面进行国际化
+
+1. 提取需要国际化的文本
+2. 创建对应的翻译文件
+3. 在组件中使用`$t`函数引用翻译文本
+4. 添加其他语言的翻译
+
+#### 3.2 创建新的国际化页面
+
+1. 先创建一个页面，跑通其功能
+2. 对其中的文本进行提取，根据其与src的相对位置放置在i18n/zh-CN下的相对位置
+3. 创建其他语言的相同相对位置的对偶文件
+4. 把所有语言的import和message调用更新到index.js中
+5. 回过来测试显示与功能是否正常
+
+例如，创建新的聊天组件：
+
+```javascript
+// 1. 创建组件并实现功能
+// src/components/chat/ChatWindow.vue
+
+// 2. 创建翻译文件
+// src/i18n/locales/zh-CN/components/chat/ChatWindow.js
+export default {
+  inputPlaceholder: '输入你想说的话...',
+  welcomeMessage: '你好，我是你的{title}~请说出你的需求'
+}
+
+// 3. 创建其他语言翻译
+// src/i18n/locales/en-US/components/chat/ChatWindow.js
+export default {
+  inputPlaceholder: 'Type your message...',
+  welcomeMessage: 'Hello, I am your {title}~Please tell me your needs'
+}
+
+// 4. 更新 index.js
+import chatWindowZhCN from './locales/zh-CN/components/chat/ChatWindow'
+import chatWindowEnUS from './locales/en-US/components/chat/ChatWindow'
+
+const messages = {
+  'zh-CN': {
+    components: {
+      chat: {
+        ChatWindow: chatWindowZhCN
+      }
+    }
+  },
+  'en-US': {
+    components: {
+      chat: {
+        ChatWindow: chatWindowEnUS
+      }
+    }
+  }
+}
+
+// 5. 在组件中使用翻译
+<template>
+  <input :placeholder="$t('components.chat.ChatWindow.inputPlaceholder')">
+</template>
+```
 
 ### 4. 命名规范
 
@@ -96,6 +154,9 @@ export default {
 // 在脚本中
 const { t } = useI18n()
 const title = t('components.home.heroSection.title')
+
+// 带参数的翻译
+{{ $t('message', { param: value }) }}
 ```
 
 ### 6. 添加新文本
@@ -119,4 +180,5 @@ const title = t('components.home.heroSection.title')
 1. 避免在翻译文件中包含HTML标签，应在组件中处理
 2. 对于包含变量的文本，使用参数传递方式：`$t('message', { param: value })`
 3. 保持翻译文件的结构一致性，便于维护和对照
-4. 定期检查翻译文件的完整性，确保所有文本都已翻译 
+4. 定期检查翻译文件的完整性，确保所有文本都已翻译
+5. 对于动态内容（如AI助手的回复），确保在发送给用户之前进行适当的语言处理 
