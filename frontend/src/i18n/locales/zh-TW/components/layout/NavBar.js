@@ -8,5 +8,5 @@ export default {
   login: '登錄',
   signup: '註冊',
   userCenter: '個人中心',
-  logout: '退出登錄'
-} 
+  logout: '退出登錄',
+}

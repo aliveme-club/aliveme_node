@@ -1,11 +1,11 @@
 <template>
   <section id="partners" class="section yellow-bg partners-section">
     <div class="container mx-auto px-4">
-      <h2 class="section-title text-3xl text-center centered mb-16">{{ $t('components.home.PartnersSection.title') }}</h2>
+      <h2 class="section-title text-3xl text-center centered mb-16">{{ $t('components.home.PartnersSection.title') }}
+      </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        <div v-for="(partner, index) in partners" :key="index"
-             class="card p-6 fade-in interactive-card" 
-             :style="{ animationDelay: `${index * 0.1}s` }">
+        <div v-for="(partner, index) in partners" :key="index" class="card p-6 fade-in interactive-card"
+          :style="{ animationDelay: `${index * 0.1}s` }">
           <div class="flex items-center mb-4">
             <img :src="partner.imgUrl" :alt="partner.name" class="w-16 h-16 rounded-full object-cover mr-4">
             <h3 class="text-xl font-bold">{{ partner.name }}</h3>
@@ -16,8 +16,8 @@
       <h3 class="text-2xl text-center mb-8">{{ $t('components.home.PartnersSection.subtitle') }}</h3>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
         <div v-for="(org, index) in organizations" :key="index"
-             class="card overflow-hidden fade-in interactive-card yellow-accent" 
-             :style="{ animationDelay: `${index * 0.1}s` }">
+          class="card overflow-hidden fade-in interactive-card yellow-accent"
+          :style="{ animationDelay: `${index * 0.1}s` }">
           <img :src="org.imgUrl" :alt="org.name" class="w-full h-48 object-cover">
         </div>
       </div>
@@ -42,7 +42,8 @@ import chineseMedicineDoctorImgUrl from '@/assets/images/chinese-medicine/chines
 import hackathonImgUrl from '@/assets/images/events/weekly_hackathon_gdc_venue.jpg';
 import sunnyAtRoundtableImgUrl from '@/assets/images/team/sunny_at_roundtable_hosting.jpg';
 
-const { t } = useI18n();
+import { computed } from 'vue';
+const { t, tm } = useI18n();
 
 // 图片映射对象
 const imageMap = {
@@ -61,50 +62,19 @@ const imageMap = {
   sunnyAtRoundtableImgUrl
 };
 
-// 添加默认数据以防i18n配置问题
-const defaultPartners = [
-  {
-    name: '覃貌Tim',
-    imgUrlKey: 'timImgUrl',
-    description: 'ALiveMe商业与运营顾问，Zion无代码生态负责人，服务27万开发者与700万用户。'
-  },
-  {
-    name: 'Cherax',
-    imgUrlKey: 'cheraxImgUrl',
-    description: 'ALiveMe社区理念顾问，生物学硕士，人生阈值理念提出者。'
-  }
-];
-
-const defaultOrganizations = [
-  {
-    name: '模速空间',
-    imgUrlKey: 'modusSpaceImgUrl'
-  },
-  {
-    name: '中医系列',
-    imgUrlKey: 'chineseMedicineImgUrl'
-  }
-];
-
 // 从i18n文件中获取合作伙伴数据，并添加图片URL
-const partnersData = t('components.home.PartnersSection.partners', [], { returnObjects: true }) || defaultPartners;
-const partners = Array.isArray(partnersData) ? partnersData.map(partner => ({
-  ...partner,
-  imgUrl: imageMap[partner.imgUrlKey]
-})) : defaultPartners.map(partner => ({
-  ...partner,
-  imgUrl: imageMap[partner.imgUrlKey]
-}));
+const partnersData = computed(() => tm('components.home.PartnersSection.partners'));
+const partners = computed(() => Array.isArray(partnersData.value) ? partnersData.value.map(partner => ({
+  ...partner, imgUrl: imageMap[partner.imgUrlKey]
+})): []);
 
 // 从i18n文件中获取组织数据，并添加图片URL
-const organizationsData = t('components.home.PartnersSection.organizations', [], { returnObjects: true }) || defaultOrganizations;
-const organizations = Array.isArray(organizationsData) ? organizationsData.map(org => ({
+const organizationsData = computed(() => tm('components.home.PartnersSection.organizations'));
+const organizations = computed(() => Array.isArray(organizationsData.value) ? organizationsData.value.map(org => ({
   ...org,
   imgUrl: imageMap[org.imgUrlKey]
-})) : defaultOrganizations.map(org => ({
-  ...org,
-  imgUrl: imageMap[org.imgUrlKey]
-}));
+})): []);
+
 </script>
 
 <style scoped>
@@ -114,7 +84,8 @@ const organizations = Array.isArray(organizationsData) ? organizationsData.map(o
 }
 
 .yellow-bg {
-  background-color: #FEF9E7; /* 淡黄色背景 */
+  background-color: #FEF9E7;
+  /* 淡黄色背景 */
 }
 
 .container {
@@ -248,6 +219,7 @@ const organizations = Array.isArray(organizationsData) ? organizationsData.map(o
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -259,9 +231,9 @@ const organizations = Array.isArray(organizationsData) ? organizationsData.map(o
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  
+
   .md\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
-</style> 
+</style>

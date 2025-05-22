@@ -23,13 +23,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref , computed } from 'vue'
 import { useI18n } from 'vue-i18n';
 
-const { t } = useI18n();
+const { t,tm } = useI18n();
 
 // 从i18n获取OH卡流程步骤
-const steps = t('components.ohCard.ohCardProcess.steps', [], { returnObjects: true });
+// 使用 computed 确保响应式，使用 tm 获取数组
+const steps = computed(() => tm('components.ohCard.ohCardProcess.steps'));
 
 // 点击卡片时添加高亮动画
 const highlightCard = (event) => {

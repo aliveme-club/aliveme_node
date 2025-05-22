@@ -1,12 +1,12 @@
 export default {
-  home: 'Home',
-  ohCard: 'OH Card Experience',
-  lifeExchange: 'Life Exchange',
-  womenUnlimited: 'Women Unlimited',
-  activities: 'Activities',
+  home: 'Homepage',
+  ohCard: 'OH card experience',
+  lifeExchange: 'Life Swap',
+  womenUnlimited: 'Boundless Femininity',
+  activities: 'Recommendations for Events',
   language: 'Language',
   login: 'Login',
-  signup: 'Sign Up',
-  userCenter: 'User Center',
-  logout: 'Logout'
-} 
+  signup: 'Registration',
+  userCenter: 'Personal Center',
+  logout: 'Logout',
+}

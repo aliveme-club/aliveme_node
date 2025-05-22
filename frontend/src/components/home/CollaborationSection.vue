@@ -25,7 +25,7 @@
           <p class="mb-4" v-for="(item, itemIndex) in method.items" :key="itemIndex">
             {{ $t(`components.home.CollaborationSection.collaborationMethods[${index}].items[${itemIndex}]`) }}
           </p>
-          <el-button v-if="method.hasButton" type="warning" class="btn-yellow">{{ $t('components.home.CollaborationSection.contactButton') }}</el-button>
+          <el-button v-if="method.hasButton" type="warning" class="btn-yellow" @click="scrollToFooter">{{ $t('components.home.CollaborationSection.contactButton') }}</el-button>
         </div>
       </div>
     </div>
@@ -35,42 +35,22 @@
 <script setup>
 import { OfficeBuilding, Promotion, TakeawayBox, Calendar } from '@element-plus/icons-vue';
 import { useI18n } from 'vue-i18n';
+import{computed} from 'vue';
 
-const { t } = useI18n();
+const { tm } = useI18n();
 
-const collaborationProjects = [
-  {
-    title: '中医诊所合作',
-    subtitle: '上海杏元中医诊所（ALiveMe协办5.1-5.4台湾名医来沪讲座）',
-    description: '我们与上海杏元中医诊所合作，共同推出一系列结合中医与心理健康的讲座和活动，帮助用户全面提升身心健康。',
-    icon: 'OfficeBuilding'
-  },
-  {
-    title: '心理咨询工作室合作',
-    subtitle: 'ALiveMe预计协办上海家庭教育讲座与咨询家访等系列活动',
-    description: '与专业心理咨询工作室合作，提供高质量的心理咨询服务和家庭教育指导，帮助用户解决心理问题和家庭关系困扰。',
-    icon: 'Promotion'
+const collaborationProjects = computed(() => tm('components.home.CollaborationSection.collaborationProjects'));
+const collaborationMethods = computed(() => tm('components.home.CollaborationSection.collaborationMethods'));
+// 添加滚动到 footer 的方法
+const scrollToFooter = () => {
+  const footerElement = document.getElementById('contact-footer');
+  if (footerElement) {
+    footerElement.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
   }
-];
-
-const collaborationMethods = [
-  {
-    title: '游戏疗愈与戏剧疗愈',
-    items: ['《交换人生》剧本桌游与其他疗愈游戏合作'],
-    description: '与游戏疗愈和戏剧疗愈专家合作，开发创新的体验式活动，如《交换人生》剧本桌游，通过游戏化方式促进自我探索和人际连接。',
-    icon: 'TakeawayBox',
-    hasButton: false
-  },
-  {
-    title: '合作方式',
-    items: [
-      '1. 通过ALiveMe小程序协助社群管理和活动发布',
-      '2. 帮助B2B资源链接，促成合作'
-    ],
-    icon: 'Calendar',
-    hasButton: true
-  }
-];
+};
 </script>
 
 <style scoped>

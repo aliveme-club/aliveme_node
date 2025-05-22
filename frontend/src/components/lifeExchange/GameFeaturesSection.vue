@@ -17,7 +17,7 @@
         </div>
         <h3 class="card-title">{{ $t('components.lifeExchange.gameFeaturesSection.featuresCardTitle') }}</h3>
         <ul class="feature-list">
-          <li v-for="(item, index) in $t('components.lifeExchange.gameFeaturesSection.featuresList', [], { returnObjects: true })" :key="index">
+          <li v-for="(item, index) in $tm('components.lifeExchange.gameFeaturesSection.featuresList')" :key="index">
             {{ item }}
           </li>
         </ul>
@@ -32,7 +32,7 @@
         </div>
         <h3 class="card-title">{{ $t('components.lifeExchange.gameFeaturesSection.valueCardTitle') }}</h3>
         <ul class="feature-list">
-          <li v-for="(item, index) in $t('components.lifeExchange.gameFeaturesSection.valuesList', [], { returnObjects: true })" :key="index">
+          <li v-for="(item, index) in $tm('components.lifeExchange.gameFeaturesSection.valuesList')" :key="index">
             {{ item }}
           </li>
         </ul>

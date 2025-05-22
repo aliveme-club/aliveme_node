@@ -32,7 +32,7 @@
           </div>
           <h3 class="text-xl font-bold mb-4 text-center">{{ $t('components.ohCard.ohCardIntroduction.mainFeatures.title') }}</h3>
           <ul class="list-disc pl-6 mb-4">
-            <li v-for="(item, index) in $t('components.ohCard.ohCardIntroduction.mainFeatures.items', [], { returnObjects: true })" :key="index" class="mb-2">
+            <li v-for="(item, index) in $tm('components.ohCard.ohCardIntroduction.mainFeatures.items')" :key="index" class="mb-2">
               {{ item }}
             </li>
           </ul>
@@ -45,7 +45,7 @@
           </div>
           <h3 class="text-xl font-bold mb-4 text-center">{{ $t('components.ohCard.ohCardIntroduction.usageScenarios.title') }}</h3>
           <ul class="list-disc pl-6 mb-4">
-            <li v-for="(item, index) in $t('components.ohCard.ohCardIntroduction.usageScenarios.items', [], { returnObjects: true })" :key="index" class="mb-2">
+            <li v-for="(item, index) in $tm('components.ohCard.ohCardIntroduction.usageScenarios.items')" :key="index" class="mb-2">
               {{ item }}
             </li>
           </ul>

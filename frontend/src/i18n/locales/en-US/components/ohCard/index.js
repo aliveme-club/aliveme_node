@@ -1,15 +1,15 @@
 export default {
-  title: 'OH Card Experience',
-  subtitle: 'Start Your Journey of Mind Exploration',
-  steps: {
+  title: 'OH card experience',
+  subtitle: 'Start your journey of soul exploration.',
+  steps:  {
     intro: 'Introduction',
-    energyGathering: 'Energy Gathering',
+    energyGathering: 'Energy Harvesting',
     cardDrawing: 'Card Drawing',
-    final: 'Complete'
+    final: 'Completion',
   },
-  nextButton: 'Next',
-  backButton: 'Back',
-  startButton: 'Start Experience',
-  finishButton: 'Finish Experience',
-  loadingText: 'Loading...'
-} 
+  nextButton: 'Next step',
+  backButton: 'Return',
+  startButton: 'Start experiencing.',
+  finishButton: 'Completion experience',
+  loadingText: 'Loading...',
+}

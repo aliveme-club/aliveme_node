@@ -20,57 +20,133 @@ import zhCN_common_LanguageSwitcher from './locales/zh-CN/components/common/Lang
 import enUS_common_LanguageSwitcher from './locales/en-US/components/common/LanguageSwitcher.js'
 import zhTW_common_LanguageSwitcher from './locales/zh-TW/components/common/LanguageSwitcher.js'
 
-// 导入简体中文组件翻译文件
+// 导入布局组件翻译
 import zhCN_layout_NavBar from './locales/zh-CN/components/layout/NavBar.js'
-import zhCN_home_HeroSection from './locales/zh-CN/components/home/HeroSection.js'
-import zhCN_home_AboutSection from './locales/zh-CN/components/home/AboutSection.js'
-import zhCN_home_FeaturesSection from './locales/zh-CN/components/home/FeaturesSection.js'
-import zhCN_home_TeamSection from './locales/zh-CN/components/home/TeamSection.js'
-import zhCN_home_TimelineSection from './locales/zh-CN/components/home/TimelineSection.js'
-import zhCN_home_PostersSection from './locales/zh-CN/components/home/PostersSection.js'
-import zhCN_home_PartnersSection from './locales/zh-CN/components/home/PartnersSection.js'
-import zhCN_home_CollaborationSection from './locales/zh-CN/components/home/CollaborationSection.js'
-import zhCN_home_EnergyCommunitySection from './locales/zh-CN/components/home/EnergyCommunitySection.js'
-
-// 导入简体中文OH卡组件翻译
-import zhCN_ohCard_OHCardHero from './locales/zh-CN/components/ohCard/OHCardHero.js'
-import zhCN_ohCard_OHCardProcess from './locales/zh-CN/components/ohCard/OHCardProcess.js'
-import zhCN_ohCard_OHCardIntroduction from './locales/zh-CN/components/ohCard/OHCardIntroduction.js'
-import zhCN_ohCard_index from './locales/zh-CN/components/ohCard/index.js'
-import zhCN_ohCard_IntroStep from './locales/zh-CN/components/ohCard/OHCardGame/IntroStep.js'
-import zhCN_ohCard_EnergyGatheringStep from './locales/zh-CN/components/ohCard/OHCardGame/EnergyGatheringStep.js'
-import zhCN_ohCard_CardDrawingStep from './locales/zh-CN/components/ohCard/OHCardGame/CardDrawingStep.js'
-import zhCN_ohCard_CardFront from './locales/zh-CN/components/ohCard/OHCardGame/CardFront.js'
-import zhCN_ohCard_CardBack from './locales/zh-CN/components/ohCard/OHCardGame/CardBack.js'
-import zhCN_ohCard_QuestionOption from './locales/zh-CN/components/ohCard/OHCardGame/QuestionOption.js'
-import zhCN_ohCard_FinalStep from './locales/zh-CN/components/ohCard/OHCardGame/FinalStep.js'
-import zhCN_ohCard_SimpleModal from './locales/zh-CN/components/ohCard/OHCardModals/SimpleModal.js'
-import zhCN_ohCard_RedrawConfirmation from './locales/zh-CN/components/ohCard/OHCardModals/RedrawConfirmation.js'
-
-// 导入简体中文交换人生组件翻译
-import zhCN_lifeExchange_HeroSection from './locales/zh-CN/components/lifeExchange/HeroSection.js'
-import zhCN_lifeExchange_GameIntroSection from './locales/zh-CN/components/lifeExchange/GameIntroSection.js'
-import zhCN_lifeExchange_GameFeaturesSection from './locales/zh-CN/components/lifeExchange/GameFeaturesSection.js'
-import zhCN_lifeExchange_HowItWorksSection from './locales/zh-CN/components/lifeExchange/HowItWorksSection.js'
-import zhCN_lifeExchange_FeaturesSection from './locales/zh-CN/components/lifeExchange/FeaturesSection.js'
-
-// 导入简体中文无界女性组件翻译
-import zhCN_womenUnlimited_HeroSection from './locales/zh-CN/components/womenUnlimited/WomenUnlimitedHeroSection.js'
-import zhCN_womenUnlimited_ContentSection from './locales/zh-CN/components/womenUnlimited/WomenUnlimitedContentSection.js'
-
-// 导入英文组件翻译文件
 import enUS_layout_NavBar from './locales/en-US/components/layout/NavBar.js'
-import enUS_home_HeroSection from './locales/en-US/components/home/HeroSection.js'
-import enUS_home_AboutSection from './locales/en-US/components/home/AboutSection.js'
-import enUS_home_FeaturesSection from './locales/en-US/components/home/FeaturesSection.js'
-import enUS_home_TeamSection from './locales/en-US/components/home/TeamSection.js'
-
-// 导入繁体中文组件翻译文件
 import zhTW_layout_NavBar from './locales/zh-TW/components/layout/NavBar.js'
+
+// 导入首页组件翻译
+import zhCN_home_HeroSection from './locales/zh-CN/components/home/HeroSection.js'
+import enUS_home_HeroSection from './locales/en-US/components/home/HeroSection.js'
 import zhTW_home_HeroSection from './locales/zh-TW/components/home/HeroSection.js'
+
+import zhCN_home_AboutSection from './locales/zh-CN/components/home/AboutSection.js'
+import enUS_home_AboutSection from './locales/en-US/components/home/AboutSection.js'
 import zhTW_home_AboutSection from './locales/zh-TW/components/home/AboutSection.js'
-import zhTW_home_FeaturesSection from './locales/zh-TW/components/home/homeFeaturesSection.js'
+
+import zhCN_home_FeaturesSection from './locales/zh-CN/components/home/FeaturesSection.js'
+import enUS_home_FeaturesSection from './locales/en-US/components/home/FeaturesSection.js'
+import zhTW_home_FeaturesSection from './locales/zh-TW/components/home/FeaturesSection.js'
+
+import zhCN_home_TeamSection from './locales/zh-CN/components/home/TeamSection.js'
+import enUS_home_TeamSection from './locales/en-US/components/home/TeamSection.js'
 import zhTW_home_TeamSection from './locales/zh-TW/components/home/TeamSection.js'
+
+import zhCN_home_TimelineSection from './locales/zh-CN/components/home/TimelineSection.js'
+import enUS_home_TimelineSection from './locales/en-US/components/home/TimelineSection.js'
+import zhTW_home_TimelineSection from './locales/zh-TW/components/home/TimelineSection.js'
+
+import zhCN_home_PostersSection from './locales/zh-CN/components/home/PostersSection.js'
+import enUS_home_PostersSection from './locales/en-US/components/home/PostersSection.js'
+import zhTW_home_PostersSection from './locales/zh-TW/components/home/PostersSection.js'
+
+import zhCN_home_PartnersSection from './locales/zh-CN/components/home/PartnersSection.js'
+import enUS_home_PartnersSection from './locales/en-US/components/home/PartnersSection.js'
+import zhTW_home_PartnersSection from './locales/zh-TW/components/home/PartnersSection.js'
+
+import zhCN_home_CollaborationSection from './locales/zh-CN/components/home/CollaborationSection.js'
+import enUS_home_CollaborationSection from './locales/en-US/components/home/CollaborationSection.js'
+import zhTW_home_CollaborationSection from './locales/zh-TW/components/home/CollaborationSection.js'
+
+import zhCN_home_EnergyCommunitySection from './locales/zh-CN/components/home/EnergyCommunitySection.js'
+import enUS_home_EnergyCommunitySection from './locales/en-US/components/home/EnergyCommunitySection.js'
+import zhTW_home_EnergyCommunitySection from './locales/zh-TW/components/home/EnergyCommunitySection.js'
+
+// 导入OH卡组件翻译
+import zhCN_ohCard_OHCardHero from './locales/zh-CN/components/ohCard/OHCardHero.js'
+import enUS_ohCard_OHCardHero from './locales/en-US/components/ohCard/OHCardHero.js'
+import zhTW_ohCard_OHCardHero from './locales/zh-TW/components/ohCard/OHCardHero.js'
+
+import zhCN_ohCard_OHCardProcess from './locales/zh-CN/components/ohCard/OHCardProcess.js'
+import enUS_ohCard_OHCardProcess from './locales/en-US/components/ohCard/OHCardProcess.js'
+import zhTW_ohCard_OHCardProcess from './locales/zh-TW/components/ohCard/OHCardProcess.js'
+
+import zhCN_ohCard_OHCardIntroduction from './locales/zh-CN/components/ohCard/OHCardIntroduction.js'
+import enUS_ohCard_OHCardIntroduction from './locales/en-US/components/ohCard/OHCardIntroduction.js'
+import zhTW_ohCard_OHCardIntroduction from './locales/zh-TW/components/ohCard/OHCardIntroduction.js'
+
+import zhCN_ohCard_index from './locales/zh-CN/components/ohCard/index.js'
+import enUS_ohCard_index from './locales/en-US/components/ohCard/index.js'
+import zhTW_ohCard_index from './locales/zh-TW/components/ohCard/index.js'
+
+// OH卡游戏组件翻译
+import zhCN_ohCard_IntroStep from './locales/zh-CN/components/ohCard/OHCardGame/IntroStep.js'
+import enUS_ohCard_IntroStep from './locales/en-US/components/ohCard/OHCardGame/IntroStep.js'
+import zhTW_ohCard_IntroStep from './locales/zh-TW/components/ohCard/OHCardGame/IntroStep.js'
+
+import zhCN_ohCard_EnergyGatheringStep from './locales/zh-CN/components/ohCard/OHCardGame/EnergyGatheringStep.js'
+import enUS_ohCard_EnergyGatheringStep from './locales/en-US/components/ohCard/OHCardGame/EnergyGatheringStep.js'
+import zhTW_ohCard_EnergyGatheringStep from './locales/zh-TW/components/ohCard/OHCardGame/EnergyGatheringStep.js'
+
+import zhCN_ohCard_CardDrawingStep from './locales/zh-CN/components/ohCard/OHCardGame/CardDrawingStep.js'
+import enUS_ohCard_CardDrawingStep from './locales/en-US/components/ohCard/OHCardGame/CardDrawingStep.js'
+import zhTW_ohCard_CardDrawingStep from './locales/zh-TW/components/ohCard/OHCardGame/CardDrawingStep.js'
+
+import zhCN_ohCard_CardFront from './locales/zh-CN/components/ohCard/OHCardGame/CardFront.js'
+import enUS_ohCard_CardFront from './locales/en-US/components/ohCard/OHCardGame/CardFront.js'
+import zhTW_ohCard_CardFront from './locales/zh-TW/components/ohCard/OHCardGame/CardFront.js'
+
+import zhCN_ohCard_CardBack from './locales/zh-CN/components/ohCard/OHCardGame/CardBack.js'
+import enUS_ohCard_CardBack from './locales/en-US/components/ohCard/OHCardGame/CardBack.js'
+import zhTW_ohCard_CardBack from './locales/zh-TW/components/ohCard/OHCardGame/CardBack.js'
+
+import zhCN_ohCard_QuestionOption from './locales/zh-CN/components/ohCard/OHCardGame/QuestionOption.js'
+import enUS_ohCard_QuestionOption from './locales/en-US/components/ohCard/OHCardGame/QuestionOption.js'
+import zhTW_ohCard_QuestionOption from './locales/zh-TW/components/ohCard/OHCardGame/QuestionOption.js'
+
+import zhCN_ohCard_FinalStep from './locales/zh-CN/components/ohCard/OHCardGame/FinalStep.js'
+import enUS_ohCard_FinalStep from './locales/en-US/components/ohCard/OHCardGame/FinalStep.js'
+import zhTW_ohCard_FinalStep from './locales/zh-TW/components/ohCard/OHCardGame/FinalStep.js'
+
+// OH卡模态框组件翻译
+import zhCN_ohCard_SimpleModal from './locales/zh-CN/components/ohCard/OHCardModals/SimpleModal.js'
+import enUS_ohCard_SimpleModal from './locales/en-US/components/ohCard/OHCardModals/SimpleModal.js'
+import zhTW_ohCard_SimpleModal from './locales/zh-TW/components/ohCard/OHCardModals/SimpleModal.js'
+
+import zhCN_ohCard_RedrawConfirmation from './locales/zh-CN/components/ohCard/OHCardModals/RedrawConfirmation.js'
+import enUS_ohCard_RedrawConfirmation from './locales/en-US/components/ohCard/OHCardModals/RedrawConfirmation.js'
+import zhTW_ohCard_RedrawConfirmation from './locales/zh-TW/components/ohCard/OHCardModals/RedrawConfirmation.js'
+
+// 导入交换人生组件翻译
+import zhCN_lifeExchange_HeroSection from './locales/zh-CN/components/lifeExchange/HeroSection.js'
+import enUS_lifeExchange_HeroSection from './locales/en-US/components/lifeExchange/HeroSection.js'
+import zhTW_lifeExchange_HeroSection from './locales/zh-TW/components/lifeExchange/HeroSection.js'
+
+import zhCN_lifeExchange_GameIntroSection from './locales/zh-CN/components/lifeExchange/GameIntroSection.js'
+import enUS_lifeExchange_GameIntroSection from './locales/en-US/components/lifeExchange/GameIntroSection.js'
+import zhTW_lifeExchange_GameIntroSection from './locales/zh-TW/components/lifeExchange/GameIntroSection.js'
+
+import zhCN_lifeExchange_GameFeaturesSection from './locales/zh-CN/components/lifeExchange/GameFeaturesSection.js'
+import enUS_lifeExchange_GameFeaturesSection from './locales/en-US/components/lifeExchange/GameFeaturesSection.js'
+import zhTW_lifeExchange_GameFeaturesSection from './locales/zh-TW/components/lifeExchange/GameFeaturesSection.js'
+
+import zhCN_lifeExchange_HowItWorksSection from './locales/zh-CN/components/lifeExchange/HowItWorksSection.js'
+import enUS_lifeExchange_HowItWorksSection from './locales/en-US/components/lifeExchange/HowItWorksSection.js'
+import zhTW_lifeExchange_HowItWorksSection from './locales/zh-TW/components/lifeExchange/HowItWorksSection.js'
+
+import zhCN_lifeExchange_FeaturesSection from './locales/zh-CN/components/lifeExchange/FeaturesSection.js'
+import enUS_lifeExchange_FeaturesSection from './locales/en-US/components/lifeExchange/FeaturesSection.js'
+import zhTW_lifeExchange_FeaturesSection from './locales/zh-TW/components/lifeExchange/FeaturesSection.js'
+
+// 导入无界女性组件翻译
+import zhCN_womenUnlimited_HeroSection from './locales/zh-CN/components/womenUnlimited/WomenUnlimitedHeroSection.js'
+import enUS_womenUnlimited_HeroSection from './locales/en-US/components/womenUnlimited/WomenUnlimitedHeroSection.js'
+import zhTW_womenUnlimited_HeroSection from './locales/zh-TW/components/womenUnlimited/WomenUnlimitedHeroSection.js'
+
+import zhCN_womenUnlimited_ContentSection from './locales/zh-CN/components/womenUnlimited/WomenUnlimitedContentSection.js'
+import enUS_womenUnlimited_ContentSection from './locales/en-US/components/womenUnlimited/WomenUnlimitedContentSection.js'
+import zhTW_womenUnlimited_ContentSection from './locales/zh-TW/components/womenUnlimited/WomenUnlimitedContentSection.js'
+
 
 // 创建消息对象
 const messages = {
@@ -141,7 +217,42 @@ const messages = {
         HeroSection: enUS_home_HeroSection,
         AboutSection: enUS_home_AboutSection,
         FeaturesSection: enUS_home_FeaturesSection,
-        TeamSection: enUS_home_TeamSection
+        TeamSection: enUS_home_TeamSection,
+        TimelineSection: enUS_home_TimelineSection,
+        PostersSection: enUS_home_PostersSection,
+        PartnersSection: enUS_home_PartnersSection,
+        CollaborationSection: enUS_home_CollaborationSection,
+        EnergyCommunitySection: enUS_home_EnergyCommunitySection
+      },
+      ohCard: {
+        ohCardHero: enUS_ohCard_OHCardHero,
+        ohCardProcess: enUS_ohCard_OHCardProcess,
+        ohCardIntroduction: enUS_ohCard_OHCardIntroduction,
+        ohCardGame: enUS_ohCard_index,
+        OHCardGame: {
+          IntroStep: enUS_ohCard_IntroStep,
+          EnergyGatheringStep: enUS_ohCard_EnergyGatheringStep,
+          CardDrawingStep: enUS_ohCard_CardDrawingStep,
+          CardFront: enUS_ohCard_CardFront,
+          CardBack: enUS_ohCard_CardBack,
+          QuestionOption: enUS_ohCard_QuestionOption,
+          FinalStep: enUS_ohCard_FinalStep
+        },
+        OHCardModals: {
+          SimpleModal: enUS_ohCard_SimpleModal,
+          RedrawConfirmation: enUS_ohCard_RedrawConfirmation
+        }
+      },
+      lifeExchange: {
+        heroSection: enUS_lifeExchange_HeroSection,
+        gameIntroSection: enUS_lifeExchange_GameIntroSection,
+        gameFeaturesSection: enUS_lifeExchange_GameFeaturesSection,
+        howItWorksSection: enUS_lifeExchange_HowItWorksSection,
+        featuresSection: enUS_lifeExchange_FeaturesSection
+      },
+      womenUnlimited: {
+        womenUnlimitedHeroSection: enUS_womenUnlimited_HeroSection,
+        womenUnlimitedContentSection: enUS_womenUnlimited_ContentSection
       }
     }
   },
@@ -159,7 +270,42 @@ const messages = {
         HeroSection: zhTW_home_HeroSection,
         AboutSection: zhTW_home_AboutSection,
         FeaturesSection: zhTW_home_FeaturesSection,
-        TeamSection: zhTW_home_TeamSection
+        TeamSection: zhTW_home_TeamSection,
+        TimelineSection: zhTW_home_TimelineSection,
+        PostersSection: zhTW_home_PostersSection,
+        PartnersSection: zhTW_home_PartnersSection,
+        CollaborationSection: zhTW_home_CollaborationSection,
+        EnergyCommunitySection: zhTW_home_EnergyCommunitySection
+      },
+      ohCard: {
+        ohCardHero: zhTW_ohCard_OHCardHero,
+        ohCardProcess: zhTW_ohCard_OHCardProcess,
+        ohCardIntroduction: zhTW_ohCard_OHCardIntroduction,
+        ohCardGame: zhTW_ohCard_index,
+        OHCardGame: {
+          IntroStep: zhTW_ohCard_IntroStep,
+          EnergyGatheringStep: zhTW_ohCard_EnergyGatheringStep,
+          CardDrawingStep: zhTW_ohCard_CardDrawingStep,
+          CardFront: zhTW_ohCard_CardFront,
+          CardBack: zhTW_ohCard_CardBack,
+          QuestionOption: zhTW_ohCard_QuestionOption,
+          FinalStep: zhTW_ohCard_FinalStep
+        },
+        OHCardModals: {
+          SimpleModal: zhTW_ohCard_SimpleModal,
+          RedrawConfirmation: zhTW_ohCard_RedrawConfirmation
+        }
+      },
+      lifeExchange: {
+        heroSection: zhTW_lifeExchange_HeroSection,
+        gameIntroSection: zhTW_lifeExchange_GameIntroSection,
+        gameFeaturesSection: zhTW_lifeExchange_GameFeaturesSection,
+        howItWorksSection: zhTW_lifeExchange_HowItWorksSection,
+        featuresSection: zhTW_lifeExchange_FeaturesSection
+      },
+      womenUnlimited: {
+        womenUnlimitedHeroSection: zhTW_womenUnlimited_HeroSection,
+        womenUnlimitedContentSection: zhTW_womenUnlimited_ContentSection
       }
     }
   }

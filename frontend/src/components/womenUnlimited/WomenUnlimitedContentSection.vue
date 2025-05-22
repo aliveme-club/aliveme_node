@@ -13,7 +13,7 @@
           </div>
           <h3 class="card-title">{{ $t('components.womenUnlimited.womenUnlimitedContentSection.highlightsTitle') }}</h3>
           <ul class="info-list">
-            <li v-for="(item, index) in $t('components.womenUnlimited.womenUnlimitedContentSection.highlightsList', [], { returnObjects: true })" :key="index">
+            <li v-for="(item, index) in $tm('components.womenUnlimited.womenUnlimitedContentSection.highlightsList')" :key="index">
               {{ item }}
             </li>
           </ul>
@@ -23,9 +23,19 @@
           <div class="card-icon-wrapper">
             <el-icon :size="32"><Opportunity /></el-icon>
           </div>
+          <!-- 调试：直接输出数据看看 -->
+          <!-- <div> -->
+            <!-- 临时添加调试 -->
+            <!-- <p>当前语言: {{ $i18n.locale }}</p> -->
+            <!-- <h3>调试信息：</h3> -->
+            <!-- <pre>{{ JSON.stringify($t('components.womenUnlimited.womenUnlimitedContentSection.benefitsList', [], {returnObjects: true}), null, 2) }}</pre> -->
+            <!-- <p>{{ $tm('components.womenUnlimited.womenUnlimitedContentSection.benefitsList[]') }}</p> -->
+            <!-- <h3>数组长度：</h3> -->
+            <!-- <p>{{ $t('components.womenUnlimited.womenUnlimitedContentSection.benefitsList', [], {returnObjects: true}).length }}</p> -->
+          <!-- </div> -->
           <h3 class="card-title">{{ $t('components.womenUnlimited.womenUnlimitedContentSection.benefitsTitle') }}</h3>
           <ul class="info-list">
-            <li v-for="(item, index) in $t('components.womenUnlimited.womenUnlimitedContentSection.benefitsList', [], { returnObjects: true })" :key="index">
+            <li v-for="(item, index) in $tm('components.womenUnlimited.womenUnlimitedContentSection.benefitsList')" :key="index">
               {{ item }}
             </li>
           </ul>
@@ -56,12 +66,12 @@ const { t } = useI18n();
 const activityHighlights = ref([
   {
     title: t('components.womenUnlimited.womenUnlimitedContentSection.highlightsTitle'),
-    description: t('components.womenUnlimited.womenUnlimitedContentSection.highlightsList', [], { returnObjects: true })[0],
+    description: t('components.womenUnlimited.womenUnlimitedContentSection.highlightsList', [], {returnObjects: true})[0],
     icon: Avatar,
   },
   {
     title: t('components.womenUnlimited.womenUnlimitedContentSection.benefitsTitle'),
-    description: t('components.womenUnlimited.womenUnlimitedContentSection.benefitsList', [], { returnObjects: true })[0],
+    description: t('components.womenUnlimited.womenUnlimitedContentSection.benefitsList', [], {returnObjects: true})[0],
     icon: Opportunity,
   },
 ]);

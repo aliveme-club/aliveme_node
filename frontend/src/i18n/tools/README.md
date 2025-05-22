@@ -20,6 +20,13 @@
    - 使用方法: `node extractTranslations.js <组件路径>`
    - 例如: `node extractTranslations.js ../../components/home/HeroSection.vue`
 
+4. **autoTranslate.py** - 自动翻译工具
+   - 使用大模型API自动将中文(zh-CN)翻译文件翻译为英文(en-US)和繁体中文(zh-TW)
+   - 支持处理嵌套对象、数组和字符串
+   - 只翻译缺失或为空的翻译项，不会覆盖已有翻译
+   - 使用方法: `python autoTranslate.py`
+   - 使用前需要配置API密钥和安装依赖: `pip install requests`
+
 ## 使用流程
 
 ### 1. 提取文本
@@ -38,7 +45,15 @@ node extractTranslations.js ../../components/home/HeroSection.vue
 node syncTranslations.js
 ```
 
-### 3. 检查翻译完整性
+### 3. 自动翻译
+
+使用大模型API自动翻译缺失的翻译项：
+
+```bash
+python autoTranslate.py
+```
+
+### 4. 检查翻译完整性
 
 检查翻译文件的完整性和一致性：
 
@@ -51,8 +66,11 @@ node checkTranslations.js
 1. 执行工具脚本前，请确保已安装所需依赖：
    ```bash
    npm install @vue/compiler-sfc
+   pip install requests  # 用于Python脚本
    ```
 
 2. 翻译提取工具可能无法提取所有需要国际化的文本，请手动检查并补充。
 
-3. 同步工具不会覆盖已存在的翻译，只会创建新的翻译文件。 
+3. 同步工具不会覆盖已存在的翻译，只会创建新的翻译文件。
+
+4. 自动翻译工具需要配置API密钥，请在使用前修改脚本中的`API_KEY`变量。 

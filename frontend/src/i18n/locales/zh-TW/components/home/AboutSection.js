@@ -9,11 +9,11 @@ export default {
     womenUnlimited: '→ 了解更多：無界女性活動'
   },
   images: {
-    alt1: 'ALiveMe活動照片1',
-    alt2: 'ALiveMe活動照片2',
-    alt3: 'ALiveMe活動照片3',
-    alt4: 'ALiveMe活動照片4',
-    roadmap: 'ALiveMe用戶路線圖'
+    alt1: 'ALiveMe活动照片1',
+    alt2: 'ALiveMe活动照片2',
+    alt3: 'ALiveMe活动照片3',
+    alt4: 'ALiveMe活动照片4',
+    roadmap: 'ALiveMe用户路线图'
   },
   vision: {
     title: '我們的願景',

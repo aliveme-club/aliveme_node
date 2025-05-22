@@ -1,7 +1,12 @@
 export default {
-  title: 'Women Unlimited',
+  title: 'Boundary-Free Women',
   subtitle: 'Break Boundaries, Bloom Yourself',
-  description: 'Women Unlimited is a community platform providing growth, support, and empowerment for women, helping them break through social limitations and discover their potential',
+  description: 'Creating an open, inclusive, and supportive exchange platform for women, connecting outstanding women from all walks of life.',
+  signupQrCodeAlt: 'Boundary-Free Women Registration QR Code',
+  signupQrCodeCaption: 'Boundary-Free Women Registration QR Code',
+  alivemeQrCodeAlt: 'ALiveMe Official Account QR Code',
+  alivemeQrCodeCaption: 'ALiveMe Official Account QR Code',
+  qrCodesNote: 'Welcome to follow the ALiveMe official account to get the latest updates on Boundary-Free Women activities, or scan the code to register for exclusive "Boundary-Free Women" events.',
   joinButton: 'Join Community',
   learnMoreButton: 'Learn More',
   stats: [
@@ -18,4 +23,4 @@ export default {
       label: 'Success Stories'
     }
   ]
-} 
+}

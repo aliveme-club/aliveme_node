@@ -1,7 +1,7 @@
 export default {
-  title: 'OH Card Experience',
-  subtitle: 'A Wonderful Journey to Explore Your Inner World',
-  description: 'Through a card experience game that integrates AI and psychology, help you explore your inner world and enhance self-awareness',
-  startButton: 'Start Experience',
-  learnMoreButton: 'Learn More'
-} 
+  title: 'OH card',
+  subtitle: 'Exploring the Window to the Inner Self',
+  description: 'Combining AI-generated technology with traditional psychological concepts, it helps users explore their inner world.',
+  startButton: 'Start experiencing.',
+  learnMoreButton: 'Learn more.',
+}

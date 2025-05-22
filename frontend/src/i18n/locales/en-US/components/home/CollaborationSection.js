@@ -1,29 +1,31 @@
 export default {
   title: 'Project Collaboration Introduction',
   collaborationProjects: [
-    {
-      title: 'Traditional Chinese Medicine Clinic Collaboration',
-      subtitle: 'Shanghai Xingyuan TCM Clinic (ALiveMe co-organized Taiwan doctor lectures in Shanghai from May 1-4)',
-      description: 'We collaborate with Shanghai Xingyuan TCM Clinic to launch a series of lectures and activities combining traditional Chinese medicine and mental health, helping users comprehensively improve their physical and mental wellbeing.'
-    },
-    {
-      title: 'Psychological Counseling Studio Collaboration',
-      subtitle: 'ALiveMe plans to co-organize Shanghai family education lectures and consultation home visits',
-      description: 'Collaborating with professional psychological counseling studios to provide high-quality psychological counseling services and family education guidance, helping users solve psychological problems and family relationship difficulties.'
-    }
-  ],
+    { 
+      "title": "Traditional Chinese Medicine Clinic Collaboration", 
+      "subtitle": "Shanghai Apricot Traditional Chinese Medicine Clinic (ALiveMe co-organizes lectures by renowned Taiwanese doctors from May 5 to May 9)", 
+      "description": "In collaboration with Shanghai Xingyuan Traditional Chinese Medicine Clinic, we have launched a series of lectures and activities that integrate traditional Chinese medicine with mental health, aimed at helping users achieve comprehensive improvement in both physical and mental well-being.",
+      "icon": "OfficeBuilding"
+    }, 
+    { 
+      "title": "Cooperation with Psychological Counseling Studio", 
+      "subtitle": "ALiveMe is expected to co-organize a series of activities, including family education lectures and consultation home visits in Shanghai.", 
+      "description": "Partnering with professional psychological counseling studios, we offer high-quality psychological counseling services and family education guidance to help users address their psychological issues and family relationship concerns.",
+      "icon": "Promotion"
+    }],
   collaborationMethods: [
     {
-      title: 'Game Therapy and Drama Therapy',
-      items: ['Collaboration with "Life Exchange" script board game and other therapeutic games']
+      "title": "Game Therapy and Drama Therapy",
+      "items": ["\"Exchange Life\" Scripted Board Game Collaborates with Other Healing Games"],
+      "icon": "TakeawayBox",
+      "hasButton": false
     },
     {
-      title: 'Collaboration Methods',
-      items: [
-        '1. Assist with community management and event publishing through ALiveMe mini-program',
-        '2. Help with B2B resource connections to facilitate cooperation'
-      ]
+      "title": "Cooperation Method",
+      "items": ["Assist in community management and event promotion through the ALiveMe mini-program.", "Assist with B2B resource linkage to facilitate collaboration."],
+      "icon": "Calendar",
+      "hasButton": true
     }
   ],
-  contactButton: 'Contact Us for Collaboration'
-} 
+  contactButton: 'Contact us for collaboration.',
+}

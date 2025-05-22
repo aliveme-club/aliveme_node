@@ -22,8 +22,8 @@ import womenUnlimitedPosterUrl from '@/assets/images/events/women_unlimited_post
 import hackathonEventUrl from '@/assets/images/events/weekly_hackathon_gdc_venue.jpg';
 import charityCampPosterUrl from '@/assets/images/charity-camp/ai_product_charity_camp_poster.jpg';
 import charityCampSpeakerUrl from '@/assets/images/charity-camp/charity_camp_speaker_intro2.jpg';
-
-const { t } = useI18n();
+import { computed } from 'vue';
+const { t,tm } = useI18n();
 
 // 图片映射对象
 const imageMap = {
@@ -33,31 +33,12 @@ const imageMap = {
   charityCampSpeakerUrl
 };
 
-// 添加默认数据以防i18n配置问题
-const defaultPosters = [
-  {
-    title: '无界女性海报',
-    imgUrlKey: 'womenUnlimitedPosterUrl',
-    date: '2023年8月18日',
-    location: '广州市天河区'
-  },
-  {
-    title: '周周黑客松与GDC大会',
-    imgUrlKey: 'hackathonEventUrl',
-    date: '2023年7月22日',
-    location: '北京市朝阳区'
-  }
-];
-
 // 从i18n文件中获取海报数据，并添加图片URL
-const postersData = t('components.home.PostersSection.posters', [], { returnObjects: true }) || defaultPosters;
-const posters = Array.isArray(postersData) ? postersData.map(poster => ({
+const postersData = computed(() => tm('components.home.PostersSection.posters'));
+const posters = computed(() => Array.isArray(postersData.value) ? postersData.value.map(poster => ({
   ...poster,
   imgUrl: imageMap[poster.imgUrlKey]
-})) : defaultPosters.map(poster => ({
-  ...poster,
-  imgUrl: imageMap[poster.imgUrlKey]
-}));
+})): []);
 </script>
 
 <style scoped>

@@ -1,23 +1,6 @@
 export default {
-  title: 'How It Works',
-  subtitle: 'Start Your Mind Exploration in Simple Steps',
-  steps: [
-    {
-      title: 'Choose a Theme',
-      description: 'Select a theme you are interested in from multiple psychology topics'
-    },
-    {
-      title: 'Draw a Card',
-      description: 'The system will randomly draw an OH card for you, displaying relevant images and questions'
-    },
-    {
-      title: 'Deep Thinking',
-      description: 'Think about the questions on the card, explore your inner feelings and thoughts'
-    },
-    {
-      title: 'Get Feedback',
-      description: 'The AI system will provide personalized psychological analysis and suggestions based on your answers'
-    }
-  ],
-  tryNowButton: 'Try Now'
-} 
+  title: 'OH card process',
+  subtitle: 'With a few simple steps, embark on a journey of self-discovery.',
+  steps: [{"title": "Identifying the hurdles in your mind.", "description": "Think about the puzzles or questions you've encountered recently."}, {"title": "Condensed cosmic energy", "description": "Extract your OH cards."}, {"title": "Problem Guidance", "description": "Let yourself be immersed in the image."}, {"title": "Seeking inspiration", "description": "Drawing inspiration from images and questions to solve stumbling blocks."}, {"title": "Completion Experience", "description": "Take your memento card"}],
+  tryNowButton: 'Immediately give it a try.',
+}
